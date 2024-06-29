@@ -1,0 +1,49 @@
+<div class="searchBy">
+  <div class="col-sm-3">
+    <label class="form-label">Código/Nome</label>
+    <input id="idInputFilterCodeName" type="text" class="form-control" />
+  </div>
+
+  <div class="col-sm-3">
+    <label class="form-label">CPF/CNPJ</label>
+    <input id="idInputFilterCpfCnpj" type="text" class="form-control" />
+  </div>
+
+  <div class="col-sm-1">
+    <label class="form-label">Tipo de pessoa</label>
+    <select id="idSelectTypePerson" class="form-select" type="select">
+      <option value="">Selecione</option>
+      <option value="{1}">Fisica</option>
+      <option value="{2}">Juridica</option>
+    </select>
+  </div>
+
+  <div class="col-sm-1">
+    <label class="form-label">Grupo de cliente</label>
+    <select id="idSelecGroup" class="form-select" type="select">
+      <option value="">Selecione</option>
+      <option value="{1}">Teste</option>
+      <option value="{2}">Teste</option>
+    </select>
+  </div>
+
+  <div class="col-sm-1">
+    <label class="form-label">Visualizar</label>
+    <select id="idSelectVisualize" class="form-select" type="select">
+      <option value="{0}">Todos</option>
+      <option value="{1}">Ativos</option>
+      <option value="{2}">Inativos</option>
+    </select>
+  </div>
+
+  <div class="col-sm-1">
+    <button
+      type="button"
+      class="btn btn-success"
+      id="searchButton"
+      onClick="{handleSearch}"
+    >
+      Pesquisar
+    </button>
+  </div>
+</div>
