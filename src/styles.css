@@ -64,3 +64,38 @@
     --blue-2: #0016FF;
     --blue-3: #00a8ff;
   }
+
+  body{
+
+    .pageContent {
+      margin: 1.563rem 1.25rem 1.563rem 1.25rem;
+      padding: 1% 1% 0% 1%;
+      gap: 1.563rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tableShadow{
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      box-shadow: .5px .5px 5px 0px rgba(0, 0, 0, .2);
+    }
+    
+    .form-group {
+      margin: 0 0.938rem 0.813rem 0;
+    }
+    
+    .form-group input {
+      border: 0.063rem solid var(--grey-2);
+    }
+    
+    .form-group select {
+      border: 0.063rem solid var(--grey-2);
+    }
+
+    .footerStyle{
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  }
