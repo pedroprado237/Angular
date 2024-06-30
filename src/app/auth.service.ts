@@ -6,10 +6,7 @@ import axios from 'axios';
 })
 export class AuthService {
   private loginUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/Auth/login';
-  private registerUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/cadastro';
-  private dataClientAllUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/cadastro';
-  private dataClientUnicUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/cadastro';
-  private editUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/cadastro';
+  private maxDataUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/cadastro';
 
   constructor() { }
 
@@ -39,7 +36,7 @@ export class AuthService {
   }
 
   register(userData: any) {
-    return axios.post(this.registerUrl, userData, this.getAuthHeaders())
+    return axios.post(this.maxDataUrl, userData, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
         console.error('Registration error!', error);
@@ -48,7 +45,7 @@ export class AuthService {
   }
 
   dataClientAll() {
-    return axios.get(this.dataClientAllUrl, this.getAuthHeaders())
+    return axios.get(this.maxDataUrl, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
         console.error('Fetch all clients error!', error);
@@ -57,7 +54,7 @@ export class AuthService {
   }
 
   dataClientUnic(userId: string) {
-    return axios.get(`${this.dataClientUnicUrl}/${userId}`, this.getAuthHeaders())
+    return axios.get(`${this.maxDataUrl}/${userId}`, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
         console.error('Fetch single client error!', error);
@@ -66,7 +63,7 @@ export class AuthService {
   }
 
   editUser(userId: string, userData: any) {
-    return axios.put(`${this.editUrl}/${userId}`, userData, this.getAuthHeaders())
+    return axios.put(`${this.maxDataUrl}/${userId}`, userData, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
         console.error('Edit error!', error);
