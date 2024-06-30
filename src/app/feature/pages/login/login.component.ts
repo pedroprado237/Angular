@@ -23,7 +23,6 @@ export class LoginComponent {
 
       .then( response => {
         response ?? localStorage.setItem('access_token', response?.data?.access_token)
-        console.log("Return Login: ", response.data)
         this.router.navigate(['/clients']);
         return
       })
