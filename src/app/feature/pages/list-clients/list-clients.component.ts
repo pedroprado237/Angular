@@ -12,7 +12,7 @@ export class ListClientsComponent implements OnInit {
   dataClients: any = '';
   dataPagination: any = '';
   pagination: number = 1
-  paginationTotal: number = 0
+  paginationTotal: number = 1
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,7 +23,6 @@ export class ListClientsComponent implements OnInit {
   loadDataClients() {
     this.authService.dataClientAll()
       .then(response => {
-        console.log("Response: ", response);
         this.dataClients = response?.itens
         this.dataPagination = response?.paginacao;
         this.paginationTotal = Math.ceil(response?.paginacao?.total_registros/20)
@@ -32,6 +31,10 @@ export class ListClientsComponent implements OnInit {
         console.error('Error loading clients', error);
         this.errorMessage = 'Failed to load clients: ' + error.message;
       });
+  }
+
+  handleEditClient(){
+    this.router.navigate(['/editClient'])
   }
 
   handlePaginationPrev(){

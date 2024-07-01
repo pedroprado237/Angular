@@ -64,7 +64,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let client of dataClients">
+      <tr *ngFor="let client of dataClients" (click)="handleEditClient()">
         <td>{{ client?.id }}</td>
         <td>{{ client?.nome ?? 'Não informado'}}</td>
         <td>{{ client?.fantasia ?? 'Não informado'}}</td>
@@ -73,13 +73,13 @@
     </tbody>
   </table>
 
-  <div class="footer footerStyle">
-    <div>
+  <div class="footer footerStyle tableShadow">
+    <div class="descriptionTotal">
       <p>
         Mostrando 1 de 20 do Total: {{dataPagination?.total_registros ?? 0}} 
       </p>
     </div>
-    <nav aria-label="Page navigation example">
+    <div aria-label="navigation">
       <ul class="pagination">
         <li class="page-item" [class.disabled]="pagination === 1">
           <a class="page-link" (click)="handlePaginationPrev()" aria-label="Previous">
@@ -93,7 +93,7 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </div>
   </div>
 
 </div>

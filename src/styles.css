@@ -75,6 +75,12 @@
       flex-direction: column;
     }
 
+    .column{
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 0.625rem;
+    }
+
     .tableShadow{
       background-color: var(--white);
       border-radius: 0.5rem;
@@ -96,6 +102,9 @@
     .footerStyle{
       display: flex;
       justify-content: space-between;
+      padding: 10px 10px 0px 10px;
   }
   
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

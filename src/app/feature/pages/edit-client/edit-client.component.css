@@ -1,4 +1,4 @@
-.searchBy{
+.firstRowEditClient{
     display: flex;
     flex-direction: row;
     gap: 0.938rem;
@@ -13,11 +13,17 @@
     box-shadow: .5px .5px 5px 0px rgba(0, 0, 0, .2);
 }
 
-.descriptionTotal{
-    padding-top: 0.625rem;
+.tabEditClient{
+    display: flex;
+    flex-direction: row;
+    gap: 0.938rem;
+    padding: 1.563rem 0rem 0rem 1.563rem ;
+
+    align-items: flex-end;
+
+    font-size: 95%;
 }
 
-#searchButton{
-    background-color: var(--grey-7);
-    border-color: var(--grey-7);
+#obsBank{
+    height: 12.5rem;
 }
