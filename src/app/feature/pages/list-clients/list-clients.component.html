@@ -1,0 +1,101 @@
+<div class="pageContent">
+  <div class="searchBy">
+    <div class="col-sm-3">
+      <label class="form-label">Código/Nome</label>
+      <input id="idInputFilterCodeName" type="text" class="form-control" />
+    </div>
+
+    <div class="col-sm-3">
+      <label class="form-label">CPF/CNPJ</label>
+      <input id="idInputFilterCpfCnpj" type="text" class="form-control" />
+    </div>
+
+    <div class="col-sm-1">
+      <label class="form-label">Tipo de pessoa</label>
+      <select id="idSelectTypePerson" class="form-select" type="select">
+        <option value="">Selecione</option>
+        <option value="{1}">Fisica</option>
+        <option value="{2}">Juridica</option>
+      </select>
+    </div>
+
+    <div class="col-sm-1">
+      <label class="form-label">Grupo de cliente</label>
+      <select id="idSelecGroup" class="form-select" type="select">
+        <option value="">Selecione</option>
+        <option value="{1}">Teste</option>
+        <option value="{2}">Teste</option>
+      </select>
+    </div>
+
+    <div class="col-sm-1">
+      <label class="form-label">Visualizar</label>
+      <select id="idSelectVisualize" class="form-select" type="select">
+        <option value="{0}">Todos</option>
+        <option value="{1}">Ativos</option>
+        <option value="{2}">Inativos</option>
+      </select>
+    </div>
+
+    <div class="col-sm-1">
+      <button
+        type="button"
+        class="btn btn-success"
+        id="searchButton"
+        (click)="handleSearch()"
+      >
+        Pesquisar
+      </button>
+    </div>
+  </div>
+
+  
+  <div *ngIf="!dataClients">
+    No clients found!
+  </div>
+
+  <table class="table table-striped tableShadow">
+    <thead>
+      <tr>
+        <th scope="col">Código</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Fantasia</th>
+        <th scope="col">CPF/CNPJ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of dataClients" (click)="handleEditClient()">
+        <td>{{ client?.id }}</td>
+        <td>{{ client?.nome ?? 'Não informado'}}</td>
+        <td>{{ client?.fantasia ?? 'Não informado'}}</td>
+        <td>{{ client?.cpf_cnpj ?? 'Não informado'}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer footerStyle tableShadow">
+    <div class="descriptionTotal">
+      <p>
+        Mostrando 1 de 20 do Total: {{dataPagination?.total_registros ?? 0}} 
+      </p>
+    </div>
+    <div aria-label="navigation">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="pagination === 1">
+          <a class="page-link" (click)="handlePaginationPrev()" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">{{pagination}}</a></li>
+        <li class="page-item" [class.disabled]="pagination === paginationTotal">
+          <a class="page-link" (click)="handlePaginationNext()" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+
