@@ -33,6 +33,10 @@ export class ListClientsComponent implements OnInit {
       });
   }
 
+  handleEditClient(){
+    this.router.navigate(['/editClient'])
+  }
+
   handlePaginationPrev(){
     this.pagination--
   }
