@@ -213,7 +213,50 @@
                 </div>
             </div>
         </mat-tab>
-        <mat-tab label="Observações">Hm</mat-tab>
+        <mat-tab label="Observações">
+            <div class="tabEditClient">
+                <div class="col-sm-12">
+                    <label class="form-label">Observação NF-e</label>
+                    <textarea id="obsNfe" class="form-control styleTextArea"></textarea>
+                </div>
+            </div>
+            <div class="tabEditClient">
+                <div class="col-sm-12">
+                    <label class="form-label">Observação Venda</label>
+                    <textarea id="obsSales" class="form-control styleTextArea"></textarea>
+                </div>
+            </div>
+
+            <div class="tabEditClient observationsDetails col-sm-12">
+                <div id="accompaniments" class="widhtObs">
+                    <table class="table table-striped tableShadow tablePadding">
+                        <thead>
+                            <tr>
+                                <th scope="col">Acompanhamentos</th>
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <td>Fixed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="annotations" class="widhtObs">
+                    <table class="table table-striped tableShadow tablePadding">
+                        <thead>
+                            <tr>
+                                <th scope="col">Anotações</th>
+                            </tr>
+                        <tbody>
+                            <tr>
+                                <td>Fixed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </mat-tab>
     </mat-tab-group>
 
 </div>
