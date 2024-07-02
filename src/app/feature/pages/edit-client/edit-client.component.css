@@ -3,7 +3,6 @@
     flex-direction: row;
     gap: 0.938rem;
     padding: 1.563rem 0rem 1.563rem 1.563rem ;
-
     align-items: flex-end;
 
     font-size: 95%;
@@ -18,7 +17,6 @@
     flex-direction: row;
     gap: 0.938rem;
     padding: 1.563rem 0rem 0rem 1.563rem ;
-
     align-items: flex-end;
 
     font-size: 95%;
@@ -27,3 +25,28 @@
 #obsBank{
     height: 12.5rem;
 }
+
+.styleTextArea{
+    height: 5.5rem;
+}
+
+.observationsDetails{
+    display: flex;
+    flex-direction: row;
+}
+
+.widhtObs{
+    width: 90%;
+}
+
+.tablePadding th{
+    display: flex;
+    justify-content: center;
+}
+
+.tablePadding tr{
+    padding-left: 0.313rem;
+}
+
+
+

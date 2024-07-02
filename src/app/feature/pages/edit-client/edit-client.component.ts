@@ -5,7 +5,7 @@ import { AuthService } from '../../../auth.service';
 @Component({
   selector: 'app-edit-client',
   templateUrl: './edit-client.component.html',
-  styleUrl: './edit-client.component.css'
+  styleUrl: './edit-client.component.css',
 })
 export class EditClientComponent {
 
