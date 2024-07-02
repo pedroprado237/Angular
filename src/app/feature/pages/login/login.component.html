@@ -1,16 +1,21 @@
-<div class="login-container">
-    <h2>Login</h2>
-    <form (ngSubmit)="onLogin()">
+<div class="pageContentLogin">
+<div class="loginContainer col-sm-12">
+  <img src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg" alt="MaxData">
+
+    <form (ngSubmit)="onLogin()" class="col-sm-3 maxWeb"> 
       <div>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" [(ngModel)]="email" name="email" required>
+        <label class="form-label" for="email">E-mail:</label>
+        <input class="form-control" type="email" id="email" [(ngModel)]="email" name="email" required>
       </div>
       <div>
-        <label for="senha">senha:</label>
-        <input type="senha" id="senha" [(ngModel)]="senha" name="senha" required>
+        <label  class="form-label" for="senha">senha:</label>
+        <input class="form-control" type="senha" id="senha" [(ngModel)]="senha" name="senha" required>
       </div>
-      <button type="submit">Login</button>
+      <div>
+      <button class="col-sm-12 buttonLogin" type="submit">Entrar</button>
+    </div>
     </form>
-    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
   </div>
+
+</div>
   
