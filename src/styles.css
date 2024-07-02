@@ -68,7 +68,7 @@
   body{
 
     .pageContent {
-      margin: 1.563rem 1.25rem 1.563rem 1.25rem;
+      margin: 0rem 1.25rem 0rem 1.25rem;
       padding: 1% 1% 0% 1%;
       gap: 1.563rem;
       display: flex;
@@ -103,6 +103,7 @@
       display: flex;
       justify-content: space-between;
       padding: 10px 10px 0px 10px;
+      margin-bottom: 1.563rem;
   }
   
   }
