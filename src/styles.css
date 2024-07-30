@@ -75,10 +75,40 @@
       flex-direction: column;
     }
 
+    .addGroup{
+      width: 2.438rem;
+      height: 2.438rem;
+      font-size: 1.813rem;
+      border-radius: 0.5rem;
+      border: none;
+  
+      color: var(--white);
+      background-color: var(--green-button);
+  }
+
+  .addClient{
+    width: 6.25rem;
+    height: 2.438rem;
+    border-radius: 0.5rem;
+    border: none;
+
+    color: var(--white);
+    background-color: var(--green-button);
+  }
+
+  .fontBold{
+    font-weight:bold ;
+  }
+
     .column{
       display: flex;
       flex-direction: column;
       padding-bottom: 0.625rem;
+    }
+
+    .row{
+      display: flex;
+      flex-direction: row;
     }
 
     .tableShadow{
