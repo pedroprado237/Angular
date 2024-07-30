@@ -1,1 +1,214 @@
-<p>new-client works!</p>
+<div class="pageContent">
+  <div class="row tableShadow">
+    <div class="row firstNewClient col-sm-12">
+      <div class="col-sm-2">
+        <label class="form-label">Cadastro</label>
+        <select id="typeClient" class="form-select" type="select">
+          <option value="{1}">Contribuinte</option>
+          <option value="{2}">Não Contribuinte</option>
+          <option value="{3}">Produtor Rural</option>
+        </select>
+      </div>
+
+      <div class="col-sm-1">
+        <label class="form-label">Pessoa</label>
+        <select id="alterName" class="form-select" type="select">
+          <option value="{1}">Sim</option>
+          <option value="{2}">Não</option>
+        </select>
+      </div>
+
+      <div class="col-sm-6">
+        <label class="form-label">Nome *</label>
+        <input id="shortName" type="text" class="form-control" />
+      </div>
+
+      <div class="col-sm-2">
+        <label class="form-label">CPF *</label>
+        <input id="rgClient" type="text" class="form-control" />
+      </div>
+
+      <div class="col-sm-1">
+        <label class="form-label">Ativo</label>
+        <select id="alterName" class="form-select" type="select">
+          <option value="{1}">Sim</option>
+          <option value="{2}">Não</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Principal">
+        <div class="column">
+          <div class="tabNewClient">
+            <div class="col-sm-2">
+              <label class="form-label">Tipo Cliente</label>
+              <select id="typeClient" class="form-select" type="select">
+                <option value="{1}">Contribuinte</option>
+                <option value="{2}">Não Contribuinte</option>
+                <option value="{3}">Produtor Rural</option>
+              </select>
+            </div>
+  
+            <div class="col-sm-2">
+              <label class="form-label">Data Nascimento</label>
+              <input id="DateBirth" type="date" class="form-control" />
+            </div>
+  
+            <div class="col-sm-3">
+              <label class="form-label">Nome Curto</label>
+              <input id="shortName" type="text" class="form-control" />
+            </div>
+  
+            <div class="col-sm-1">
+              <label class="form-label">Alterar Nome</label>
+              <select id="alterName" class="form-select" type="select">
+                <option value="{1}">Sim</option>
+                <option value="{2}">Não</option>
+              </select>
+            </div>
+  
+            <div class="col-sm-1">
+              <label class="form-label">RG</label>
+              <input id="rgClient" type="number" class="form-control" />
+            </div>
+  
+            <div class="col-sm-2">
+              <label class="form-label">Fone</label>
+              <input id="numberFone" type="number" class="form-control" />
+            </div>
+          </div>
+          <div class="tabNewClient">
+            <div class="col-sm-2">
+              <label class="form-label">Celular</label>
+              <input id="numberCel" type="number" class="form-control" />
+            </div>
+  
+            <div class="col-sm-2">
+              <label class="form-label">Tipo de Venda</label>
+              <select id="typeSale" class="form-select" type="select">
+                <option value="{1}">Somente Venda</option>
+                <option value="{2}">Somente Atacado</option>
+                <option value="{3}">Venda ou Atacado</option>
+              </select>
+            </div>
+  
+            <div class="col-sm-2">
+              <label class="form-label">Desconto Automático</label>
+              <input id="discountClient" type="number" class="form-control" />
+            </div>
+  
+            <div class="col-sm-2">
+              <label class="form-label">Crédito Disponivel</label>
+              <input id="numberFone" type="number" class="form-control" />
+            </div>
+  
+            <div class="col-sm-3">
+              <label class="form-label">Grupo</label>
+              <select id="typeSale" class="form-select" type="select">
+                <option value="{1}">Teste Web</option>
+                <option value="{2}">Teste Front</option>
+              </select>
+            </div>
+            <div>
+              <button class="addGroup">+</button>
+            </div>
+          </div>
+          <div class="tabEditClient">
+            <label class="form-label fontBold">Endereço</label>
+        </div>''
+          <div class="tabNewClient">
+            <div class="col-sm-2">
+              <label class="form-label">Tipo Cliente</label>
+              <select id="typeClient" class="form-select" type="select">
+                <option value="{1}">Contribuinte</option>
+                <option value="{2}">Não Contribuinte</option>
+                <option value="{3}">Produtor Rural</option>
+              </select>
+            </div>
+  
+            <div class="col-sm-2">
+              <label class="form-label">Data Nascimento</label>
+              <input id="DateBirth" type="date" class="form-control" />
+            </div>
+  
+            <div class="col-sm-3">
+              <label class="form-label">Nome Curto</label>
+              <input id="shortName" type="text" class="form-control" />
+            </div>
+  
+            <div class="col-sm-1">
+              <label class="form-label">Alterar Nome</label>
+              <select id="alterName" class="form-select" type="select">
+                <option value="{1}">Sim</option>
+                <option value="{2}">Não</option>
+              </select>
+            </div>
+  
+            <div class="col-sm-1">
+              <label class="form-label">RG</label>
+              <input id="rgClient" type="number" class="form-control" />
+            </div>
+  
+            <div class="col-sm-2">
+              <label class="form-label">Fone</label>
+              <input id="numberFone" type="number" class="form-control" />
+            </div>
+          </div>
+
+        </div>
+      </mat-tab>
+      <mat-tab label="Financeiro">
+        <div class="tabEditClient">
+          <div class="col-sm-2">
+            <label class="form-label">Núm. Banco</label>
+            <input id="numberBank" type="number" class="form-control" />
+          </div>
+  
+          <div class="col-sm-3">
+            <label class="form-label">Nome Banco</label>
+            <input id="nameBank" type="text" class="form-control" />
+          </div>
+  
+          <div class="col-sm-2">
+            <label class="form-label">Agência</label>
+            <input id="numberAgenc" type="number" class="form-control" />
+          </div>
+  
+          <div class="col-sm-2">
+            <label class="form-label">Núm. Conta</label>
+            <input id="numberAcount" type="number" class="form-control" />
+          </div>
+  
+          <div class="col-sm-2">
+            <label class="form-label">Tipo de Conta</label>
+            <select id="typeAcount" class="form-select" type="select">
+              <option value="{1}">Corrente</option>
+              <option value="{2}">Poupança</option>
+              <option value="{3}">Salário</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="tabEditClient">
+          <div class="col-sm-2">
+            <label class="form-label">Data Conta</label>
+            <input id="dateAcount" type="date" class="form-control" />
+          </div>
+  
+          <div class="col-sm-3">
+            <label class="form-label">Fone Agência</label>
+            <input id="foneAgenc" type="number" class="form-control" />
+          </div>
+        </div>
+  
+        <div class="tabEditClient">
+          <div class="col-sm-12">
+            <label class="form-label">Observação Banco</label>
+            <textarea id="obsBank" class="form-control"></textarea>
+          </div>
+        </div>
+      </mat-tab>
+  </mat-tab-group>
+</div>

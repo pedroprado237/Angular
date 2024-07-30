@@ -5,39 +5,54 @@
       <input id="idInputFilterCodeName" type="text" class="form-control" />
     </div>
 
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <label class="form-label">CPF/CNPJ</label>
       <input id="idInputFilterCpfCnpj" type="text" class="form-control" />
     </div>
 
     <div class="col-sm-1">
       <label class="form-label">Tipo de pessoa</label>
-      <select id="idSelectTypePerson" class="form-select" type="select">
-        <option value="">Selecione</option>
-        <option value="{1}">Fisica</option>
-        <option value="{2}">Juridica</option>
+      <select
+        id="idSelectTypePerson"
+        class="form-select"
+        type="select"
+        (change)="onSelectedTypePerson($event)"
+      >
+        <option
+          *ngFor="let person of typePerson | keyvalue"
+          [value]="person.key"
+        >
+          {{ person.value }}
+        </option>
       </select>
     </div>
 
-    <div class="col-sm-1">
+    <div class="col-sm-2">
       <label class="form-label">Grupo de cliente</label>
-      <select id="idSelecGroup" class="form-select" type="select">
-        <option value="">Selecione</option>
-        <option value="{1}">Teste</option>
-        <option value="{2}">Teste</option>
+      <select id="idSelecGroup" class="form-select" type="select" disabled>
+        <!-- <option *ngFor="let group of groups | keyvalue"
+        [value]="group.key">{{ visualization.value }}</option> -->
       </select>
     </div>
 
     <div class="col-sm-1">
       <label class="form-label">Visualizar</label>
-      <select id="idSelectVisualize" class="form-select" type="select">
-        <option value="{0}">Todos</option>
-        <option value="{1}">Ativos</option>
-        <option value="{2}">Inativos</option>
+      <select
+        id="idSelectVisualize"
+        class="form-select"
+        type="select"
+        (change)="onSelectedTypeVisualization($event)"
+      >
+        <option
+          *ngFor="let visualization of typeVisualization | keyvalue"
+          [value]="visualization.key"
+        >
+          {{ visualization.value }}
+        </option>
       </select>
     </div>
 
-    <div class="col-sm-1">
+    <div class="">
       <button
         type="button"
         class="btn btn-success"
@@ -47,6 +62,18 @@
         Pesquisar
       </button>
     </div>
+
+    <div>
+      <button
+        type="button"
+        class="addClient"
+        id="addClient"
+        (click)="handleNewClient()"
+      >
+        + Novo
+      </button>
+    </div>
+
   </div>
 
   <table class="table table-striped tableShadow">
@@ -61,9 +88,9 @@
     <tbody>
       <tr *ngFor="let client of dataClients" (click)="handleEditClient()">
         <td>{{ client?.id }}</td>
-        <td>{{ client?.nome ?? 'Não informado'}}</td>
-        <td>{{ client?.fantasia ?? 'Não informado'}}</td>
-        <td>{{ client?.cpf_cnpj ?? 'Não informado'}}</td>
+        <td>{{ client?.nome ?? "Não informado" }}</td>
+        <td>{{ client?.fantasia ?? "Não informado" }}</td>
+        <td>{{ client?.cpf_cnpj ?? "Não informado" }}</td>
       </tr>
     </tbody>
   </table>
@@ -71,26 +98,33 @@
   <div class="footer footerStyle tableShadow">
     <div class="descriptionTotal">
       <p>
-        Mostrando 1 de 20 do Total: {{dataPagination?.total_registros ?? 0}} 
+        Mostrando 1 de 20 do Total: {{ dataPagination?.total_registros ?? 0 }}
       </p>
     </div>
     <div aria-label="navigation">
       <ul class="pagination">
         <li class="page-item" [class.disabled]="pagination === 1">
-          <a class="page-link" (click)="handlePaginationPrev()" aria-label="Previous">
+          <a
+            class="page-link"
+            (click)="handlePaginationPrev()"
+            aria-label="Previous"
+          >
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li class="page-item"><a class="page-link" href="#">{{pagination}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">{{ pagination }}</a>
+        </li>
         <li class="page-item" [class.disabled]="pagination === paginationTotal">
-          <a class="page-link" (click)="handlePaginationNext()" aria-label="Next">
+          <a
+            class="page-link"
+            (click)="handlePaginationNext()"
+            aria-label="Next"
+          >
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
       </ul>
     </div>
   </div>
-
 </div>
-
-
