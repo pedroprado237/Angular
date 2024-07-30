@@ -8,11 +8,34 @@ import { AuthService } from '../../../auth.service';
   styleUrls: ['./list-clients.component.css']
 })
 export class ListClientsComponent implements OnInit {
-  errorMessage: string = '';
   dataClients: any = '';
   dataPagination: any = '';
   pagination: number = 1
   paginationTotal: number = 1
+
+  typePerson = {
+    "Fisica":"Fisica",
+    "Juridica":"Juridica"
+  }
+
+  typeVisualization = {
+    "Todos":"Todos",
+    "Ativos":"Ativos",
+    "Inativos":"Inativos"
+  }
+
+  selectedTypePerson: string | undefined;
+  selectedTypeVisualization: string | undefined;
+
+  onSelectedTypePerson(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedTypePerson = selectElement.value;
+  }
+
+  onSelectedTypeVisualization(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedTypeVisualization = selectElement.value;
+  }
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -29,10 +52,12 @@ export class ListClientsComponent implements OnInit {
       })
       .catch(error => {
         console.error('Error loading clients', error);
-        this.errorMessage = 'Failed to load clients: ' + error.message;
       });
   }
 
+  handleNewClient(){
+    this.router.navigate(['/newClient'])
+  }
   handleEditClient(){
     this.router.navigate(['/editClient'])
   }
