@@ -12,6 +12,8 @@ import { EditClientComponent } from './feature/pages/edit-client/edit-client.com
 import { NewClientComponent } from './feature/pages/new-client/new-client.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDividerModule
+
   ],
   providers: [AuthService, provideAnimationsAsync()],
   bootstrap: [AppComponent]

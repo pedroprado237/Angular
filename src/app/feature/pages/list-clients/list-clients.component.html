@@ -1,4 +1,30 @@
 <div class="pageContent">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <img
+            src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg"
+            alt="MaxData"
+            style="max-width: 186px; height: auto"
+          />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> 
+    </div>
+  </nav>
+
+  <div>
+    <button
+      type="button"
+      class="addClient"
+      id="addClient"
+      (click)="handleNewClient()"
+    >
+      + Novo
+    </button>
+  </div>
+
   <div class="searchBy">
     <div class="col-sm-3">
       <label class="form-label">Código/Nome</label>
@@ -9,8 +35,8 @@
       <label class="form-label">CPF/CNPJ</label>
       <input id="idInputFilterCpfCnpj" type="text" class="form-control" />
     </div>
+    <div class="col-sm-2">
 
-    <div class="col-sm-1">
       <label class="form-label">Tipo de pessoa</label>
       <select
         id="idSelectTypePerson"
@@ -19,19 +45,28 @@
         (change)="onSelectedTypePerson($event)"
       >
         <option
-          *ngFor="let person of typePerson | keyvalue"
-          [value]="person.key"
+          *ngFor="let person of typePerson"
+          [value]="person.value"
         >
-          {{ person.value }}
+          {{ person.viewValue }}
         </option>
       </select>
     </div>
 
     <div class="col-sm-2">
       <label class="form-label">Grupo de cliente</label>
-      <select id="idSelecGroup" class="form-select" type="select" disabled>
-        <!-- <option *ngFor="let group of groups | keyvalue"
-        [value]="group.key">{{ visualization.value }}</option> -->
+      <select
+        id="idSelectGroupClient"
+        class="form-select"
+        type="select"
+        (change)="onSelectedGroupClient($event)"
+      >
+        <option
+          *ngFor="let group of groupClient"
+          [value]="group.value"
+        >
+          {{ group.viewValue }}
+        </option>
       </select>
     </div>
 
@@ -44,10 +79,10 @@
         (change)="onSelectedTypeVisualization($event)"
       >
         <option
-          *ngFor="let visualization of typeVisualization | keyvalue"
-          [value]="visualization.key"
+          *ngFor="let visualization of typeVisualization"
+          [value]="visualization.value"
         >
-          {{ visualization.value }}
+          {{ visualization.viewValue }}
         </option>
       </select>
     </div>
@@ -62,18 +97,6 @@
         Pesquisar
       </button>
     </div>
-
-    <div>
-      <button
-        type="button"
-        class="addClient"
-        id="addClient"
-        (click)="handleNewClient()"
-      >
-        + Novo
-      </button>
-    </div>
-
   </div>
 
   <table class="table table-striped tableShadow">
@@ -86,7 +109,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let client of dataClients" (click)="handleEditClient()">
+      <tr *ngFor="let client of dataClients" (click)="handleEditClient(client?.id)">
         <td>{{ client?.id }}</td>
         <td>{{ client?.nome ?? "Não informado" }}</td>
         <td>{{ client?.fantasia ?? "Não informado" }}</td>

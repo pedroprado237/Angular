@@ -34,7 +34,7 @@
     --grey-8: #d3d3d3;
   
     --red: #C41F25;
-    --red-delete: #dc3545;
+    --red-disabled: #dc3545;
     --red-2: #ffdfdf;
     --red-3: #FE4E26;
     --red-4: #FF2D29;
@@ -42,6 +42,7 @@
     --red-6: #fef4f4;
 
     --black: #000000;
+    --darkGray: #333;
 
     --orange-block: #ee6262;
     --orange-1: #ec7823;
@@ -78,7 +79,11 @@
     .flexEnd{
       display: flex;
       justify-content: flex-end;
-      padding-top: 3.75rem;
+      padding-bottom: 1.875rem;
+    }
+
+    .actionsButtons{
+      gap: 0.938rem;
     }
 
     .confirmButton{
@@ -90,13 +95,21 @@
       background-color: var(--green-button);
     }
 
+    .disableButton{
+      width: 6.875rem;
+      height: 1.875rem;
+      border-radius: 0.5rem;
+      border: none;
+      color: var(--white);
+      background-color: var(--red-disabled);
+    }
+
     .addGroup{
       width: 2.438rem;
       height: 2.438rem;
       font-size: 1.813rem;
       border-radius: 0.5rem;
       border: none;
-  
       color: var(--white);
       background-color: var(--green-button);
   }
@@ -113,6 +126,12 @@
 
   .fontBold{
     font-weight:bold ;
+  }
+
+  .titleSpan{
+    font-size: 1.875rem;
+    font-weight: bolder;
+    color: var(--darkGray);
   }
 
     .column{

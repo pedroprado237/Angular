@@ -1,6 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth.service';
+interface stringValue {
+  value: string,
+  viewValue: string
+}
+
+interface booleanValue {
+  value: boolean,
+  viewValue: string
+}
+
+interface numberValue {
+  value: number,
+  viewValue: string
+}
 
 @Component({
   selector: 'app-list-clients',
@@ -13,19 +27,32 @@ export class ListClientsComponent implements OnInit {
   pagination: number = 1
   paginationTotal: number = 1
 
-  typePerson = {
-    "Fisica":"Fisica",
-    "Juridica":"Juridica"
-  }
+  typePerson : stringValue[] = [
+    {value : "0", viewValue:  "Selecione"},
+    {value : "Fisica", viewValue : "Fisica"},
+    {value : "Juridica", viewValue : "Juridica"}
+  ]
 
-  typeVisualization = {
-    "Todos":"Todos",
-    "Ativos":"Ativos",
-    "Inativos":"Inativos"
-  }
+  typeVisualization : stringValue[] = [
+    {value: "Todos", viewValue : "Todos"},
+    {value : "Ativos", viewValue : "Ativos"},
+    {value : "Inativos", viewValue : "Inativos"}
+  ]
+
+  groupClient : stringValue[] = [
+    {value: "Selecione", viewValue : "Selecione"},
+    {value : "Farmacias", viewValue : "Farmacias"},
+    {value : "Supermecados", viewValue : "Supermecados"},
+    {value : "Autopecas", viewValue : "Autopeças"},
+    {value : "Restaurantes", viewValue : "Restaurantes"},
+    {value : "PostoGasolina", viewValue : "Posto de Gasolina"},
+
+
+  ]
 
   selectedTypePerson: string | undefined;
   selectedTypeVisualization: string | undefined;
+  selectedGroupClient: string | undefined;
 
   onSelectedTypePerson(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
@@ -35,6 +62,10 @@ export class ListClientsComponent implements OnInit {
   onSelectedTypeVisualization(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedTypeVisualization = selectElement.value;
+  }
+  onSelectedGroupClient(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedGroupClient = selectElement.value;
   }
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -58,8 +89,15 @@ export class ListClientsComponent implements OnInit {
   handleNewClient(){
     this.router.navigate(['/newClient'])
   }
-  handleEditClient(){
-    this.router.navigate(['/editClient'])
+
+  handleEditClient(id: number) {
+    this.authService.dataClientUnic(id)
+      .then(response => {
+        this.router.navigate(['/editClient/'], { state: { clientData: response } });
+      })
+      .catch(error => {
+        console.error('Error', error);
+      });
   }
 
   handlePaginationPrev(){
