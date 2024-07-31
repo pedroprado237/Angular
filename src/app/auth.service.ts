@@ -35,8 +35,8 @@ export class AuthService {
     };
   }
 
-  register(userData: any) {
-    return axios.post(this.maxDataUrl, userData, this.getAuthHeaders())
+  register(registerData: any) {
+    return axios.post(this.maxDataUrl, registerData, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
         console.error('Registration error!', error);

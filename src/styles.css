@@ -75,6 +75,21 @@
       flex-direction: column;
     }
 
+    .flexEnd{
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 3.75rem;
+    }
+
+    .confirmButton{
+      width: 6.875rem;
+      height: 1.875rem;
+      border-radius: 0.5rem;
+      border: none;
+      color: var(--white);
+      background-color: var(--green-button);
+    }
+
     .addGroup{
       width: 2.438rem;
       height: 2.438rem;
