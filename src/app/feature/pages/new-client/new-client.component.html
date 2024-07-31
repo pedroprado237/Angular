@@ -1,24 +1,46 @@
 <div class="pageContent">
+  <img
+    src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg"
+    alt="MaxData"
+    style="max-width: 186px; height: auto"
+  />
   <div class="row tableShadow">
     <div class="row firstNewClient col-sm-12">
       <div class="col-sm-2">
         <label class="form-label">Cadastro</label>
-        <select id="typeClient" class="form-select" type="select">
-          <option value="{1}">Contribuinte</option>
-          <option value="{2}">Não Contribuinte</option>
-          <option value="{3}">Produtor Rural</option>
+        <select
+          id="typeClient"
+          class="form-select"
+          type="select"
+          (change)="onSelectionChange($event, 'selectedTypeRegisterNew')"
+        >
+          <option
+            *ngFor="let register of typeRegisterNew | keyvalue"
+            [value]="register.key"
+          >
+            {{ register.value }}
+          </option>
         </select>
       </div>
 
-      <div class="col-sm-1">
+      <div class="col-sm-2">
         <label class="form-label">Pessoa</label>
-        <select id="alterName" class="form-select" type="select">
-          <option value="{1}">Sim</option>
-          <option value="{2}">Não</option>
+        <select
+          id="alterName"
+          class="form-select"
+          type="select"
+          (change)="onSelectionChange($event, 'selectedTypePersonNew')"
+        >
+          <option
+            *ngFor="let person of typePersonNew | keyvalue"
+            [value]="person.key"
+          >
+            {{ person.value }}
+          </option>
         </select>
       </div>
 
-      <div class="col-sm-6">
+      <div class="col-sm-5">
         <label class="form-label">Nome *</label>
         <input id="shortName" type="text" class="form-control" />
       </div>
@@ -31,8 +53,8 @@
       <div class="col-sm-1">
         <label class="form-label">Ativo</label>
         <select id="alterName" class="form-select" type="select">
-          <option value="{1}">Sim</option>
-          <option value="{2}">Não</option>
+          <option value="{true}">Sim</option>
+          <option value="{false}">Não</option>
         </select>
       </div>
     </div>
@@ -40,175 +62,230 @@
 
   <mat-tab-group animationDuration="0ms">
     <mat-tab label="Principal">
-        <div class="column">
-          <div class="tabNewClient">
-            <div class="col-sm-2">
-              <label class="form-label">Tipo Cliente</label>
-              <select id="typeClient" class="form-select" type="select">
-                <option value="{1}">Contribuinte</option>
-                <option value="{2}">Não Contribuinte</option>
-                <option value="{3}">Produtor Rural</option>
-              </select>
-            </div>
-  
-            <div class="col-sm-2">
-              <label class="form-label">Data Nascimento</label>
-              <input id="DateBirth" type="date" class="form-control" />
-            </div>
-  
-            <div class="col-sm-3">
-              <label class="form-label">Nome Curto</label>
-              <input id="shortName" type="text" class="form-control" />
-            </div>
-  
-            <div class="col-sm-1">
-              <label class="form-label">Alterar Nome</label>
-              <select id="alterName" class="form-select" type="select">
-                <option value="{1}">Sim</option>
-                <option value="{2}">Não</option>
-              </select>
-            </div>
-  
-            <div class="col-sm-1">
-              <label class="form-label">RG</label>
-              <input id="rgClient" type="number" class="form-control" />
-            </div>
-  
-            <div class="col-sm-2">
-              <label class="form-label">Fone</label>
-              <input id="numberFone" type="number" class="form-control" />
-            </div>
-          </div>
-          <div class="tabNewClient">
-            <div class="col-sm-2">
-              <label class="form-label">Celular</label>
-              <input id="numberCel" type="number" class="form-control" />
-            </div>
-  
-            <div class="col-sm-2">
-              <label class="form-label">Tipo de Venda</label>
-              <select id="typeSale" class="form-select" type="select">
-                <option value="{1}">Somente Venda</option>
-                <option value="{2}">Somente Atacado</option>
-                <option value="{3}">Venda ou Atacado</option>
-              </select>
-            </div>
-  
-            <div class="col-sm-2">
-              <label class="form-label">Desconto Automático</label>
-              <input id="discountClient" type="number" class="form-control" />
-            </div>
-  
-            <div class="col-sm-2">
-              <label class="form-label">Crédito Disponivel</label>
-              <input id="numberFone" type="number" class="form-control" />
-            </div>
-  
-            <div class="col-sm-3">
-              <label class="form-label">Grupo</label>
-              <select id="typeSale" class="form-select" type="select">
-                <option value="{1}">Teste Web</option>
-                <option value="{2}">Teste Front</option>
-              </select>
-            </div>
-            <div>
-              <button class="addGroup">+</button>
-            </div>
-          </div>
-          <div class="tabEditClient">
-            <label class="form-label fontBold">Endereço</label>
-        </div>''
-          <div class="tabNewClient">
-            <div class="col-sm-2">
-              <label class="form-label">Tipo Cliente</label>
-              <select id="typeClient" class="form-select" type="select">
-                <option value="{1}">Contribuinte</option>
-                <option value="{2}">Não Contribuinte</option>
-                <option value="{3}">Produtor Rural</option>
-              </select>
-            </div>
-  
-            <div class="col-sm-2">
-              <label class="form-label">Data Nascimento</label>
-              <input id="DateBirth" type="date" class="form-control" />
-            </div>
-  
-            <div class="col-sm-3">
-              <label class="form-label">Nome Curto</label>
-              <input id="shortName" type="text" class="form-control" />
-            </div>
-  
-            <div class="col-sm-1">
-              <label class="form-label">Alterar Nome</label>
-              <select id="alterName" class="form-select" type="select">
-                <option value="{1}">Sim</option>
-                <option value="{2}">Não</option>
-              </select>
-            </div>
-  
-            <div class="col-sm-1">
-              <label class="form-label">RG</label>
-              <input id="rgClient" type="number" class="form-control" />
-            </div>
-  
-            <div class="col-sm-2">
-              <label class="form-label">Fone</label>
-              <input id="numberFone" type="number" class="form-control" />
-            </div>
+      <div class="column">
+        <div class="tabNewClient">
+          <div class="col-sm-2">
+            <label class="form-label">Tipo Cliente</label>
+            <select
+              id="typeClient"
+              class="form-select"
+              type="select"
+              (change)="onSelectionChange($event, 'selectedTypeClientNew')"
+            >
+              <option
+                *ngFor="let typeClient of typeClientNew | keyvalue"
+                [value]="typeClient.key"
+              >
+                {{ typeClient.value }}
+              </option>
+            </select>
           </div>
 
+          <div class="col-sm-2">
+            <label class="form-label">Data Nascimento</label>
+            <input id="DateBirth" type="date" class="form-control" />
+          </div>
+
+          <div class="col-sm-3">
+            <label class="form-label">Nome Curto</label>
+            <input id="shortName" type="text" class="form-control" />
+          </div>
+
+          <div class="col-sm-1">
+            <label class="form-label">Alterar Nome</label>
+            <select id="alterName" class="form-select" type="select">
+              <option value="false">Não</option>
+              <option value="true">Sim</option>
+            </select>
+          </div>
+
+          <div class="col-sm-1">
+            <label class="form-label">RG</label>
+            <input id="rgClient" type="number" class="form-control" />
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">Fone</label>
+            <input id="numberFone" type="number" class="form-control" />
+          </div>
         </div>
-      </mat-tab>
-      <mat-tab label="Financeiro">
+        <div class="tabNewClient">
+          <div class="col-sm-2">
+            <label class="form-label">Celular</label>
+            <input id="numberCel" type="number" class="form-control" />
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">Tipo de Venda</label>
+            <select
+              id="typeSale"
+              class="form-select"
+              type="select"
+              (change)="onSelectionChange($event, 'selectedTypeSaleNew')"
+            >
+              <option
+                *ngFor="let typeSale of typeSaleNew | keyvalue"
+                [value]="typeSale.key"
+              >
+                {{ typeSale.value }}
+              </option>
+            </select>
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">Desconto Automático</label>
+            <input id="discountClient" type="number" class="form-control" />
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">Crédito Disponivel</label>
+            <input id="numberFone" type="number" class="form-control" />
+          </div>
+
+          <div class="col-sm-3">
+            <label class="form-label">Grupo</label>
+            <select id="typeSale" class="form-select" type="select" disabled>
+              <option value=" ">Selecione</option>
+              <option value="{1}">Teste Web</option>
+              <option value="{2}">Teste Front</option>
+            </select>
+          </div>
+          <div>
+            <button class="addGroup">+</button>
+          </div>
+        </div>
         <div class="tabEditClient">
+          <label class="form-label fontBold">Endereço</label>
+        </div>
+        <div class="tabNewClient">
+          <div class="col-sm-2">
+            <label class="form-label">CEP *</label>
+            <input id="numberCep" type="number" class="form-control" />
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">Estado UF</label>
+            <input id="stateUF" class="form-select" type="text" disabled />
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">Municipio</label>
+            <input id="nameCity" type="text" class="form-control" disabled />
+          </div>
+
+          <div class="col-sm-5">
+            <label class="form-label">Endereço *</label>
+            <input id="nameCity" type="text" class="form-control" disabled />
+          </div>
+        </div>
+
+        <div class="tabNewClient">
+          <div class="col-sm-2">
+            <label class="form-label">Bairro *</label>
+            <input
+              id="neighborhood"
+              type="text"
+              class="form-control"
+              disabled
+            />
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">Número *</label>
+            <input id="numberAddress" type="number" class="form-control" />
+          </div>
+
+          <div class="col-sm-2">
+            <label class="form-label">I.E Prod. Rural</label>
+            <input id="prodRuralIE" type="text" class="form-control" />
+          </div>
+
+          <div class="col-sm-5">
+            <label class="form-label">Descrição *</label>
+            <input id="description" type="text" class="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="flexEnd">
+        <button class="confirmButton">Salvar</button>
+      </div>
+    </mat-tab>
+    <mat-tab label="Financeiro">
+      <div class="column">
+        <div class="tabNewClient">
           <div class="col-sm-2">
             <label class="form-label">Núm. Banco</label>
-            <input id="numberBank" type="number" class="form-control" />
+            <input
+              id="numberBank"
+              type="number"
+              class="form-control"
+              disabled
+            />
           </div>
-  
+
           <div class="col-sm-3">
             <label class="form-label">Nome Banco</label>
-            <input id="nameBank" type="text" class="form-control" />
+            <input id="nameBank" type="text" class="form-control" disabled />
           </div>
-  
+
           <div class="col-sm-2">
             <label class="form-label">Agência</label>
-            <input id="numberAgenc" type="number" class="form-control" />
+            <input
+              id="numberAgenc"
+              type="number"
+              class="form-control"
+              disabled
+            />
           </div>
-  
+
           <div class="col-sm-2">
             <label class="form-label">Núm. Conta</label>
-            <input id="numberAcount" type="number" class="form-control" />
+            <input
+              id="numberAcount"
+              type="number"
+              class="form-control"
+              disabled
+            />
           </div>
-  
+
           <div class="col-sm-2">
             <label class="form-label">Tipo de Conta</label>
-            <select id="typeAcount" class="form-select" type="select">
-              <option value="{1}">Corrente</option>
-              <option value="{2}">Poupança</option>
-              <option value="{3}">Salário</option>
+            <select
+              id="typeAcount"
+              class="form-select"
+              type="select"
+              disabled
+              (change)="onSelectionChange($event, 'selectedTypeAccountNew')"
+            >
+              <option
+                *ngFor="let typeAccount of typeAccountNew | keyvalue"
+                [value]="typeAccount.key"
+              >
+                {{ typeAccount.value }}
+              </option>
             </select>
           </div>
         </div>
-  
-        <div class="tabEditClient">
+
+        <div class="tabNewClient">
           <div class="col-sm-2">
             <label class="form-label">Data Conta</label>
-            <input id="dateAcount" type="date" class="form-control" />
+            <input id="dateAcount" type="date" class="form-control" disabled />
           </div>
-  
+
           <div class="col-sm-3">
             <label class="form-label">Fone Agência</label>
-            <input id="foneAgenc" type="number" class="form-control" />
+            <input id="foneAgenc" type="number" class="form-control" disabled />
           </div>
         </div>
-  
+
         <div class="tabEditClient">
           <div class="col-sm-12">
             <label class="form-label">Observação Banco</label>
-            <textarea id="obsBank" class="form-control"></textarea>
+            <textarea id="obsBank" class="form-control" disabled></textarea>
           </div>
         </div>
-      </mat-tab>
+      </div>
+    </mat-tab>
   </mat-tab-group>
 </div>
