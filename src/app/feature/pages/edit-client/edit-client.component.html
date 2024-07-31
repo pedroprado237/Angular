@@ -1,0 +1,231 @@
+<div class="pageContent">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/clients">
+        <img
+          src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg"
+          alt="MaxData"
+          style="max-width: 186px; height: auto"
+        />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <span class="nav-link titleSpan" aria-current="page">Edição</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="firstRowEditClient tableShadow">
+    <div class="col-sm-1">
+      <label class="form-label">Código</label>
+      <input id="idCodeClientEdit" type="text" class="form-control" disabled
+      [(ngModel)] = "codigo" />
+    </div>
+
+    <div class="col-sm-2">
+      <label class="form-label">Cadastro</label>
+      <select
+        id="idSelectTypeRegistrationEdit"
+        class="form-select"
+        type="select"
+        (change)="onSelectionChange($event, 'selectedTypeRegisterEdit')"
+      >
+        <option
+          *ngFor="let typeRegister of typeRegisterEdit"
+          [value]="typeRegister.value"
+        >
+          {{ typeRegister.viewValue }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-sm-2">
+      <label class="form-label">Pessoa</label>
+      <select id="idSelecTypePersonEdit" class="form-select" type="select"
+      (change)="onSelectionChange($event, 'selectedTypePersonEdit')"
+    >
+      <option
+        *ngFor="let typePerson of typePersonEdit"
+        [value]="typePerson.value"
+      >
+        {{ typePerson.viewValue }}
+      </option>
+    </select>
+    </div>
+
+    <div class="col-sm-3">
+      <label class="form-label">Nome</label>
+      <input id="idInputNameClientEdit" type="text" class="form-control" 
+      [(ngModel)] = "name"/>
+    </div>
+
+    <div class="col-sm-2">
+      <label class="form-label">CPF</label>
+      <input id="inputCpfEdit" type="text" class="form-control" 
+      [(ngModel)] = "cpf" />
+    </div>
+
+    <div class="col-sm-1">
+      <label class="form-label">Ativo</label>
+      <select id="idActiveClientEdit" class="form-select" type="select">
+        <option value="{1}">Sim</option>
+        <option value="{2}">Não</option>
+      </select>
+    </div>
+  </div>
+
+  <div>
+    <div class="column">
+      <div class="tabEditClient">
+        <div class="col-sm-2">
+          <label class="form-label">Tipo Cliente</label>
+          <select id="typeClientEdit" class="form-select" type="select"
+          (change)="onSelectionChange($event, 'selectedTypeClientEdit')"
+        >
+          <option
+            *ngFor="let typeClient of typeClientEdit"
+            [value]="typeClient.value"
+          >
+            {{ typeClient.viewValue }}
+          </option>
+        </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Data Nascimento</label>
+          <input id="dateBirthEdit" type="date" class="form-control" 
+          [(ngModel)] = "date"/>
+        </div>
+
+        <div class="col-sm-3">
+          <label class="form-label">Nome Curto</label>
+          <input id="shortNameEdit" type="text" class="form-control"
+          [(ngModel)] = "shortName"/>
+        </div>
+
+        <div class="col-sm-1">
+          <label class="form-label">Alterar Nome</label>
+          <select id="alterNameEdit" class="form-select" type="select">
+            <option value="{2}">Não</option>
+            <option value="{1}">Sim</option>
+          </select>
+        </div>
+
+        <div class="col-sm-1">
+          <label class="form-label">RG</label>
+          <input id="rgClientEdit" type="number" class="form-control" 
+          [(ngModel)] = "rg"/>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Fone</label>
+          <input id="numberFoneEdit" type="number" class="form-control" 
+          [(ngModel)] = "fone"/>
+        </div>
+      </div>
+      <div class="tabEditClient">
+        <div class="col-sm-2">
+          <label class="form-label">Celular</label>
+          <input id="numberCelEdit" type="number" class="form-control" 
+          [(ngModel)] = "cell"/>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Tipo de Venda</label>
+          <select id="typeSaleEdit" class="form-select" type="select"
+          (change)="onSelectionChange($event, 'selectedTypeSaleEdit')"
+        >
+          <option
+            *ngFor="let typeSale of typeSaleEdit"
+            [value]="typeSale.value"
+          >
+            {{ typeSale.viewValue }}
+          </option>
+        </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Desconto Automático</label>
+          <input id="discountClientEdit" type="number" class="form-control" 
+          [(ngModel)] = "automaticDesc"/>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Crédito Disponivel</label>
+          <input id="disponibleCredEdit" type="number" class="form-control" 
+          [(ngModel)] = "disponibleCed"/>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Grupo</label>
+          <select id="groupEdit" class="form-select" type="select" disabled>
+            <option value="{0}">Selecione</option>
+          </select>
+        </div>
+        <div>
+          <button class="addGroup" disabled>+</button>
+        </div>
+      </div>
+      <div class="tabEditClient">
+        <label class="form-label fontBold">Endereço</label>
+      </div>
+      <div class="tabEditClient">
+        <div class="col-sm-2">
+          <label class="form-label">CEP *</label>
+          <input id="numberCepEdit" type="number" class="form-control" 
+          [(ngModel)] = "cep"/>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Estado UF</label>
+          <input id="stateUFEdit" class="form-select" type="text" disabled />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Municipio</label>
+          <input id="nameCityEdit" type="text" class="form-control" disabled 
+          [(ngModel)] = "mun"/>
+        </div>
+
+        <div class="col-sm-5">
+          <label class="form-label">Endereço *</label>
+          <input id="nameCityEdit" type="text" class="form-control" disabled 
+          [(ngModel)] = "adress"/>
+        </div>
+      </div>
+
+      <div class="tabEditClient">
+        <div class="col-sm-2">
+          <label class="form-label">Bairro *</label>
+          <input id="neighborhoodEdit" type="text" class="form-control" disabled 
+          [(ngModel)] = "neighborhood"/>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Número *</label>
+          <input id="numberAddressEdit" type="number" class="form-control" 
+          [(ngModel)] = "number"/>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">I.E Prod. Rural</label>
+          <input id="prodRuralIEEdit" type="text" class="form-control" 
+          [(ngModel)] = "ieProdRural"/>
+        </div>
+
+        <div class="col-sm-5">
+          <label class="form-label">Descrição *</label>
+          <input id="descriptionEdit" type="text" class="form-control" 
+          [(ngModel)] = "description"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="flexEnd actionsButtons">
+      <button class="disableButton">Desativar</button>
+      <button class="confirmButton">Salvar</button>
+    </div>
+  </div>
+</div>

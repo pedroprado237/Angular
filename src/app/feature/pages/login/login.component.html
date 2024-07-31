@@ -1,0 +1,21 @@
+<div class="pageContentLogin">
+<div class="loginContainer col-sm-12">
+  <img src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg" alt="MaxData">
+
+    <form (ngSubmit)="onLogin()" class="col-sm-3 maxWeb"> 
+      <div>
+        <label class="form-label" for="email">E-mail:</label>
+        <input class="form-control" type="email" id="email" [(ngModel)]="email" name="email" required>
+      </div>
+      <div>
+        <label  class="form-label" for="senha">senha:</label>
+        <input class="form-control" type="senha" id="senha" [(ngModel)]="senha" name="senha" required>
+      </div>
+      <div>
+      <button class="col-sm-12 buttonLogin" type="submit">Entrar</button>
+    </div>
+    </form>
+  </div>
+
+</div>
+  

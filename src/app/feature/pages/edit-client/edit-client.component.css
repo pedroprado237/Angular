@@ -1,0 +1,52 @@
+.firstRowEditClient{
+    display: flex;
+    flex-direction: row;
+    gap: 0.938rem;
+    padding:  0.625rem 0.625rem 0.875rem 0.625rem;
+    align-items: flex-end;
+
+    font-size: 95%;
+
+    background-color: var(--white);
+    border-radius: 0.5rem;
+    box-shadow: .5px .5px 5px 0px rgba(0, 0, 0, .2);
+}
+
+.tabEditClient{
+    display: flex;
+    flex-direction: row;
+    gap: 0.938rem;
+    padding:  0.625rem 0.625rem 0.875rem 0.625rem;
+    align-items: flex-end;
+
+    font-size: 95%;
+}
+
+#obsBank{
+    height: 12.5rem;
+}
+
+.styleTextArea{
+    height: 5.5rem;
+}
+
+.observationsDetails{
+    display: flex;
+    flex-direction: row;
+}
+
+.widhtObs{
+    width: 90%;
+}
+
+.tablePadding th{
+    display: flex;
+    justify-content: center;
+}
+
+.tablePadding tr{
+    padding-left: 0.313rem;
+}
+
+
+
