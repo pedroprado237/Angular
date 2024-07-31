@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth.service';
-
 interface stringValue {
   value: string,
   viewValue: string
@@ -16,7 +15,6 @@ interface numberValue {
   value: number,
   viewValue: string
 }
-
 
 @Component({
   selector: 'app-list-clients',
@@ -56,7 +54,6 @@ export class ListClientsComponent implements OnInit {
   selectedTypeVisualization: string | undefined;
   selectedGroupClient: string | undefined;
 
-
   onSelectedTypePerson(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedTypePerson = selectElement.value;
@@ -66,7 +63,6 @@ export class ListClientsComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedTypeVisualization = selectElement.value;
   }
-
   onSelectedGroupClient(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedGroupClient = selectElement.value;

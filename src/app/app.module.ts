@@ -14,6 +14,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDividerModule} from '@angular/material/divider';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import {MatDividerModule} from '@angular/material/divider';
     AppRoutingModule,
     MatTabsModule,
     MatDividerModule
+
   ],
   providers: [AuthService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
