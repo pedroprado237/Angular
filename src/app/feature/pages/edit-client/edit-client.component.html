@@ -187,16 +187,20 @@
         </div>
 
         <div class="col-sm-2">
-          <label class="form-label">Desconto Automático</label>
-          <input
-            id="discountClientEdit"
-            type="number"
-            min="0"
-            class="form-control"
-            [(ngModel)]="automaticDesc"
-            placeholder="Não informado"
-          />
-        </div>
+            <label for="basic-url" class="form-label">Desconto Automático</label>
+            <div class="input-group">
+              <input
+                type="number"
+                class="form-control"
+                id="basic-url"
+                aria-describedby="basic-addon3 basic-addon4"
+                min="0"
+                [(ngModel)]="automaticDesc"
+                placeholder="Desconto"
+              />
+              <span class="input-group-text" id="basic-addon3"> % </span>
+            </div>
+          </div>
       </div>
       <div class="row firstNewClient col-sm-12">
         <label class="form-label fontBold">Endereço</label>
