@@ -35,8 +35,8 @@ export class AuthService {
     };
   }
 
-  register(userData: any) {
-    return axios.post(this.maxDataUrl, userData, this.getAuthHeaders())
+  register(registerData: any) {
+    return axios.post(this.maxDataUrl, registerData, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
         console.error('Registration error!', error);
@@ -52,8 +52,9 @@ export class AuthService {
         throw error;
       });
   }
+  
+  dataClientUnic(userId: number) {
 
-  dataClientUnic(userId: string) {
     return axios.get(`${this.maxDataUrl}/${userId}`, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
@@ -61,8 +62,9 @@ export class AuthService {
         throw error;
       });
   }
+  
+  editUser(userId: number, userData: any) {
 
-  editUser(userId: string, userData: any) {
     return axios.put(`${this.maxDataUrl}/${userId}`, userData, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {

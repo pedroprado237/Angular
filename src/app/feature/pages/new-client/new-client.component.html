@@ -1,1 +1,219 @@
-<p>new-client works!</p>
+<div class="pageContent">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/clients">
+        <img
+          src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg"
+          alt="MaxData"
+          style="max-width: 186px; height: auto"
+        />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <span class="nav-link titleSpan" aria-current="page">Cadastro</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="row tableShadow">
+    <div class="row firstNewClient col-sm-12">
+      <div class="col-sm-2">
+        <label class="form-label">Cadastro</label>
+        <select
+          id="typeClientNew"
+          class="form-select"
+          type="select"
+          (change)="onSelectionChange($event, 'selectedTypeRegisterNew')"
+        >
+          <option
+            *ngFor="let register of typeRegisterNew"
+            [value]="register.value"
+          >
+            {{ register.viewValue }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-sm-2">
+        <label class="form-label">Pessoa</label>
+        <select
+          id="alterNameNew"
+          class="form-select"
+          type="select"
+          (change)="onSelectionChange($event, 'selectedTypePersonNew')"
+        >
+          <option *ngFor="let person of typePersonNew" [value]="person.value">
+            {{ person.viewValue }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-sm-5">
+        <label class="form-label">Nome *</label>
+        <input id="shortNameNew" type="text" class="form-control" />
+      </div>
+
+      <div class="col-sm-2">
+        <label class="form-label">CPF *</label>
+        <input id="rgClientNew" type="text" class="form-control" />
+      </div>
+
+      <div class="col-sm-1">
+        <label class="form-label">Ativo</label>
+        <select id="alterNameNew" class="form-select" type="select">
+          <option value="{true}">Sim</option>
+          <option value="{false}">Não</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div label="Principal">
+    <div class="column">
+      <div class="tabEditClient">
+        <label class="form-label fontBold">Principal</label>
+        <mat-divider></mat-divider>
+      </div>
+      <div class="tabNewClient">
+        <div class="col-sm-2">
+          <label class="form-label">Tipo Cliente</label>
+          <select
+            id="typeClientNew"
+            class="form-select"
+            type="select"
+            (change)="onSelectionChange($event, 'selectedTypeClientNew')"
+          >
+            <option
+              *ngFor="let typeClient of typeClientNew"
+              [value]="typeClient.value"
+            >
+              {{ typeClient.viewValue }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Data Nascimento</label>
+          <input id="dateBirthNew" type="date" class="form-control" />
+        </div>
+
+        <div class="col-sm-3">
+          <label class="form-label">Nome Curto</label>
+          <input id="shortNameNew" type="text" class="form-control" />
+        </div>
+
+        <div class="col-sm-1">
+          <label class="form-label">Alterar Nome</label>
+          <select id="alterNameNew" class="form-select" type="select">
+            <option value="false">Não</option>
+            <option value="true">Sim</option>
+          </select>
+        </div>
+
+        <div class="col-sm-1">
+          <label class="form-label">RG</label>
+          <input id="rgClientNew" type="number" class="form-control" />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Fone</label>
+          <input id="numberFoneNew" type="number" class="form-control" />
+        </div>
+      </div>
+      <div class="tabNewClient">
+        <div class="col-sm-2">
+          <label class="form-label">Celular</label>
+          <input id="numberCelNew" type="number" class="form-control" />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Tipo de Venda</label>
+          <select
+            id="typeSaleNew"
+            class="form-select"
+            type="select"
+            (change)="onSelectionChange($event, 'selectedTypeSaleNew')"
+          >
+            <option
+              *ngFor="let typeSale of typeSaleNew"
+              [value]="typeSale.value"
+            >
+              {{ typeSale.viewValue }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Desconto Automático</label>
+          <input id="discountClientNew" type="number" class="form-control" />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Crédito Disponivel</label>
+          <input id="numberFoneNew" type="number" class="form-control" />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Grupo</label>
+          <select id="typeSaleNew" class="form-select" type="select" disabled>
+            <option value=" ">Selecione</option>
+          </select>
+        </div>
+        <div>
+          <button class="addGroup">+</button>
+        </div>
+      </div>
+      <div class="tabEditClient">
+        <label class="form-label fontBold">Endereço</label>
+      </div>
+      <div class="tabNewClient">
+        <div class="col-sm-2">
+          <label class="form-label">CEP *</label>
+          <input id="numberCepNew" type="number" class="form-control" />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Estado UF</label>
+          <input id="stateUFNew" class="form-select" type="text" disabled />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Municipio</label>
+          <input id="nameCityNew" type="text" class="form-control" disabled />
+        </div>
+
+        <div class="col-sm-5">
+          <label class="form-label">Endereço *</label>
+          <input id="nameCityNew" type="text" class="form-control" disabled />
+        </div>
+      </div>
+
+      <div class="tabNewClient">
+        <div class="col-sm-2">
+          <label class="form-label">Bairro *</label>
+          <input id="neighborhoodNew" type="text" class="form-control" disabled />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Número *</label>
+          <input id="numberAddressNew" type="number" class="form-control" />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">I.E Prod. Rural</label>
+          <input id="prodRuralIENew" type="text" class="form-control" />
+        </div>
+
+        <div class="col-sm-5">
+          <label class="form-label">Descrição *</label>
+          <input id="descriptionNew" type="text" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="flexEnd">
+      <button class="confirmButton">Salvar</button>
+    </div>
+  </div>
+</div>

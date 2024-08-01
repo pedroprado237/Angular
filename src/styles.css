@@ -7,7 +7,7 @@
 
     --silver: #cccccc26;
     --silver-2: #848484;
-    --silver-3: #333333;
+    --silver-3: #DAD7D7;
     --silver-4: #f4f4f4;
     --silver-5: #575757;
     --silver-6: #D8D2D2;
@@ -22,7 +22,7 @@
   
 
     --grey: #999999;
-    --grey-2: #e8f4ef;
+    --grey-2: #9194AA;
     --grey-3: #e9f1ee;
     --grey-4: #f4f7f6;
     --grey-5: #f7f7f7;
@@ -33,8 +33,8 @@
     --grey-7: #495057;
     --grey-8: #d3d3d3;
   
-    --red: #f21535;
-    --red-delete: #dc3545;
+    --red: #C41F25;
+    --red-disabled: #dc3545;
     --red-2: #ffdfdf;
     --red-3: #FE4E26;
     --red-4: #FF2D29;
@@ -42,6 +42,7 @@
     --red-6: #fef4f4;
 
     --black: #000000;
+    --darkGray: #333;
 
     --orange-block: #ee6262;
     --orange-1: #ec7823;
@@ -67,18 +68,83 @@
 
   body{
 
+    background-color: #F8F9FA;
+
     .pageContent {
-      margin: 1.563rem 1.25rem 1.563rem 1.25rem;
+      margin: 0rem 1.25rem 0rem 1.25rem;
       padding: 1% 1% 0% 1%;
       gap: 1.563rem;
       display: flex;
       flex-direction: column;
     }
 
+    .flexEnd{
+      display: flex;
+      justify-content: flex-end;
+      padding-bottom: 1.875rem;
+    }
+
+    .actionsButtons{
+      gap: 0.938rem;
+    }
+
+    .confirmButton{
+      width: 6.875rem;
+      height: 1.875rem;
+      border-radius: 0.5rem;
+      border: none;
+      color: var(--white);
+      background-color: var(--green-button);
+    }
+
+    .disableButton{
+      width: 6.875rem;
+      height: 1.875rem;
+      border-radius: 0.5rem;
+      border: none;
+      color: var(--white);
+      background-color: var(--red-disabled);
+    }
+
+    .addGroup{
+      width: 2.438rem;
+      height: 2.438rem;
+      font-size: 1.813rem;
+      border-radius: 0.5rem;
+      border: none;
+      color: var(--white);
+      background-color: var(--green-button);
+  }
+
+  .addClient{
+    width: 6.25rem;
+    height: 2.438rem;
+    border-radius: 0.5rem;
+    border: none;
+
+    color: var(--white);
+    background-color: var(--green-button);
+  }
+
+  .fontBold{
+    font-weight:bold ;
+  }
+
+  .titleSpan{
+    font-size: 1.875rem;
+    font-weight: bolder;
+    color: var(--darkGray);
+  }
+
     .column{
       display: flex;
       flex-direction: column;
       padding-bottom: 0.625rem;
+    }
+
+    .row{
+      display: flex;
+      flex-direction: row;
     }
 
     .tableShadow{
@@ -103,6 +169,7 @@
       display: flex;
       justify-content: space-between;
       padding: 10px 10px 0px 10px;
+      margin-bottom: 1.563rem;
   }
   
   }

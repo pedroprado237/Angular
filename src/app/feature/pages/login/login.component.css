@@ -1,0 +1,35 @@
+.pageContentLogin{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5rem;
+    padding: 9.375rem 0rem 0rem 0rem;
+
+    background-color: var(--silver-3);
+}
+
+.loginContainer img{
+    width: 50%;
+}
+
+.maxWeb{
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    gap: 1.25rem;
+    border-radius: 0.75rem;
+    color: var(--white);
+    background-color: var(--red);
+}
+
+.buttonLogin{
+    color: var(--white);
+    background-color: var(--grey-2);
+    border-radius: 0.375rem;
+}
