@@ -22,7 +22,6 @@ interface NumberValue {
   templateUrl: './edit-client.component.html',
   styleUrls: ['./edit-client.component.css'],
 })
-
 export class EditClientComponent implements OnInit {
   clientData: any;
 
@@ -74,7 +73,6 @@ export class EditClientComponent implements OnInit {
     { value: 3, viewValue: 'Produtor Rural' },
   ];
 
-
   selectedTypePersonEdit: string | undefined;
   selectedTypeRegisterEdit: string | undefined;
   selectedTypeClientEdit: number | undefined;
@@ -90,7 +88,6 @@ export class EditClientComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.clientData) {
-
       this.codigo = this.clientData?.clientData?.id;
       this.register = this.clientData?.clientData?.tipo_cadastro;
       this.person = this.clientData?.clientData?.tipo_pessoa;
@@ -157,5 +154,4 @@ export class EditClientComponent implements OnInit {
         console.error('Error', error);
       });
   }
-
 }
