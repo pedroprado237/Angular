@@ -54,7 +54,6 @@ export class AuthService {
   }
   
   dataClientUnic(userId: number) {
-
     return axios.get(`${this.maxDataUrl}/${userId}`, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
