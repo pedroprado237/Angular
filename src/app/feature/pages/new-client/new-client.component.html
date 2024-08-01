@@ -1,1 +1,308 @@
-<p>new-client works!</p>
+<div class="pageContent">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/clients">
+        <img
+          src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg"
+          alt="MaxData"
+          style="max-width: 186px; height: auto"
+        />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <span class="nav-link titleSpan" aria-current="page">Cadastro</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="firstRowEditClient tableShadow">
+    <div class="row firstNewClient col-sm-12">
+      <div class="col-sm-2">
+        <label class="form-label">Cadastro</label>
+        <select
+          id="typeClientNew"
+          class="form-select"
+          type="select"
+          [(ngModel)]="register"
+          (change)="onSelectionChange($event, 'selectedTypeRegisterNew')"
+        >
+          <option
+            *ngFor="let register of typeRegisterNew"
+            [value]="register.value"
+          >
+            {{ register.viewValue }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-sm-2">
+        <label class="form-label">Pessoa</label>
+        <select
+          id="alterNameNew"
+          class="form-select"
+          type="select"
+          [(ngModel)]="person"
+          (change)="onSelectionChange($event, 'selectedTypePersonNew')"
+        >
+          <option *ngFor="let person of typePersonNew" [value]="person.value">
+            {{ person.viewValue }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-sm-5">
+        <label class="form-label">Nome *</label>
+        <input
+          id="shortNameNew"
+          type="text"
+          class="form-control"
+          [(ngModel)]="name"
+          placeholder="Nome do cliente"
+        />
+      </div>
+
+      <div class="col-sm-2">
+        <label class="form-label">CPF *</label>
+        <input
+          id="rgClientNew"
+          type="text"
+          class="form-control"
+          [(ngModel)]="cpf"
+          placeholder="CPF"
+        />
+      </div>
+
+      <div class="col-sm-1">
+        <label class="form-label">Ativo</label>
+        <select
+          id="alterNameNew"
+          class="form-select"
+          type="select"
+          [(ngModel)]="ativeStatus"
+        >
+          <option value="true">Sim</option>
+          <option value="false">Não</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="column tableShadow">
+      <div class="tabEditClient">
+        <label class="form-label fontBold">Principal</label>
+        <mat-divider></mat-divider>
+      </div>
+      <div class="row firstNewClient col-sm-12">
+        <div class="col-sm-2">
+          <label class="form-label">Tipo Cliente</label>
+          <select
+            id="typeClientNew"
+            class="form-select"
+            type="select"
+            [(ngModel)]="typeClient"
+            (change)="onSelectionChange($event, 'selectedTypeClientNew')"
+          >
+            <option
+              *ngFor="let typeClient of typeClientNew"
+              [value]="typeClient.value"
+            >
+              {{ typeClient.viewValue }}
+            </option>
+          </select>
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label">Nome Curto</label>
+          <input
+            id="shortNameNew"
+            type="text"
+            class="form-control"
+            [(ngModel)]="shortName"
+            placeholder="Apelido do cliente"
+          />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Alterar Nome</label>
+          <select
+            id="alterNameNew"
+            class="form-select"
+            type="select"
+            [(ngModel)]="alterName"
+          >
+            <option value="false">Não</option>
+            <option value="true">Sim</option>
+          </select>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">RG</label>
+          <input
+            id="rgClientNew"
+            type="number"
+            class="form-control"
+            [(ngModel)]="rg"
+            placeholder="RG"
+          />
+        </div>
+      </div>
+      <div class="row firstNewClient col-sm-12">
+        <div class="col-sm-2">
+          <label class="form-label">Fone</label>
+          <input
+            id="numberFoneNew"
+            type="number"
+            min="0"
+            class="form-control"
+            [(ngModel)]="fone"
+            placeholder="ex: (11)1234-5678"
+          />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Celular</label>
+          <input
+            id="numberCelNew"
+            type="number"
+            min="0"
+            class="form-control"
+            [(ngModel)]="cell"
+            placeholder="ex: (11)1234-5678"
+          />
+        </div>
+
+        <div class="col-sm-2">
+          <label for="basic-url" class="form-label">Desconto Automático</label>
+          <div class="input-group">
+            <input
+              type="number"
+              class="form-control"
+              id="basic-url"
+              aria-describedby="basic-addon3 basic-addon4"
+              min="0"
+              [(ngModel)]="automaticDesc"
+              placeholder="Desconto"
+            />
+            <span class="input-group-text" id="basic-addon3"> % </span>
+          </div>
+        </div>
+      </div>
+      <div class="tabEditClient">
+        <label class="form-label fontBold">Endereço</label>
+      </div>
+      <div class="row firstNewClient col-sm-12">
+        <div class="col-sm-2">
+          <label for="basic-url" class="form-label">CEP *</label>
+          <div class="input-group">
+            <input
+              type="number"
+              class="form-control"
+              id="basic-url"
+              aria-describedby="basic-addon3 basic-addon4"
+              min="0"
+              [(ngModel)]="cep"
+            />
+            <span
+              class="input-group-text"
+              id="basic-addon3"
+              (click)="handleCEP()"
+            >
+              <mat-icon fontIcon="search"></mat-icon>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Estado UF</label>
+          <input
+            id="stateUFNew"
+            class="form-control"
+            type="text"
+            disabled
+            [(ngModel)]="stateUF"
+            placeholder="Estado"
+          />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Município</label>
+          <input
+            id="nameCityNew"
+            type="text"
+            class="form-control"
+            disabled
+            [(ngModel)]="mun"
+            placeholder="Municipio"
+          />
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label">Endereço *</label>
+          <input
+            id="nameCityNew"
+            type="text"
+            class="form-control"
+            [(ngModel)]="adress"
+            placeholder="Endereço"
+          />
+        </div>
+      </div>
+
+      <div class="row firstNewClient col-sm-12">
+        <div class="col-sm-2">
+          <label class="form-label">Bairro *</label>
+          <input
+            id="neighborhoodNew"
+            type="text"
+            class="form-control"
+            [(ngModel)]="neighborhood"
+            placeholder="Bairro"
+          />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">Número *</label>
+          <input
+            id="numberAddressNew"
+            type="number"
+            min="0"
+            class="form-control"
+            [(ngModel)]="number"
+            placeholder="Número"
+          />
+        </div>
+
+        <div class="col-sm-2">
+          <label class="form-label">I.E Prod. Rural</label>
+          <input
+            id="prodRuralIENew"
+            type="text"
+            class="form-control"
+            [(ngModel)]="ieProdRural"
+            placeholder="I.E Prod. Rural"
+          />
+        </div>
+
+        <div class="col-sm-6">
+          <label class="form-label">Descrição *</label>
+          <input
+            id="descriptionNew"
+            type="text"
+            required
+            class="form-control"
+            [(ngModel)]="description"
+            placeholder="Descrição"
+          />
+        </div>
+      </div>
+      <div class="row firstNewClient col-sm-12">
+        <div class="flexEnd col-sm-12">
+          <button class="confirmButton">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

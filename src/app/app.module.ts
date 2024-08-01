@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AuthService } from './auth.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +9,9 @@ import { ListClientsComponent } from './feature/pages/list-clients/list-clients.
 import { EditClientComponent } from './feature/pages/edit-client/edit-client.component';
 import { NewClientComponent } from './feature/pages/new-client/new-client.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatTabsModule} from '@angular/material/tabs';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +25,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    MatTabsModule
+    MatDividerModule,
+    MatIconModule
+
   ],
   providers: [AuthService, provideAnimationsAsync()],
   bootstrap: [AppComponent]
