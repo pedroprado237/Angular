@@ -24,6 +24,32 @@ interface numberValue {
 export class NewClientComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
+  adressPrincipal: any;
+
+  register: string | string = '0';
+  person: string | string = '0';
+  name: string | null = null;
+  cpf: string | null = null;
+  ativeStatus: boolean | boolean = true;
+
+  typeClient: number | number = 0;
+  shortName: string | null = null;
+  alterName: boolean | boolean = false;
+  rg: string | null = null;
+  fone: string | null = null;
+  cell: string | null = null;
+
+  automaticDesc: number | null = null;
+
+  cep: number | number = 0;
+  stateUF: string | null = null;
+  mun: number | null = null;
+  adress: string | null = null;
+  neighborhood: string | null = null;
+  number: string | null = null;
+  ieProdRural: string | null = null;
+  description: string | null = null;
+
   typeRegisterNew: stringValue[] = [
     { value: '0', viewValue: 'Selecione' },
     { value: 'Cliente', viewValue: 'Cliente' },
@@ -54,28 +80,28 @@ export class NewClientComponent {
   ];
 
   registerData = {
-    nome: 'NOME',
-    ativo: true,
-    fantasia: 'NOME',
-    cpf_cnpj: '47329234028',
-    rg_ie: '123456',
-    tipo_pessoa: 'Fisica',
-    tipo_cadastro: 'Cliente',
-    cadastro_tipo_id: 2,
-    fone: '63984989898',
-    chk_alterar_nome: false,
-    desconto_auto_aplicar: false,
+    nome: this.name,
+    ativo: this.ativeStatus,
+    fantasia: this.shortName,
+    cpf_cnpj: this.cpf,
+    rg_ie: this.rg,
+    tipo_pessoa: this.person,
+    tipo_cadastro: this.register,
+    cadastro_tipo_id: this.typeClient,
+    fone: this.fone,
+    chk_alterar_nome: this.alterName,
+    desconto_auto_aplicar: this.automaticDesc !== null ? false : true,
     cadastro_endereco_padrao: {
-      descricao: 'PRINCIPAL',
+      descricao: this.description,
       ativo: true,
-      endereco: 'Quadra ARSE 121 Alameda 8',
-      endereco_numero: '34',
-      endereco_bairro: 'Plano Diretor Sul',
-      endereco_cep: '77019514',
-      endereco_municipio_codigo_ibge: 1721000,
+      // endereco: this.adressPrincipal?.logradouro,
+      endereco_numero: this.number,
+      // endereco_bairro: this.adressPrincipal?.bairro,
+      endereco_cep: this.cep,
+      // endereco_municipio_codigo_ibge: this.adressPrincipal?.ibge,
       principal: false,
       cobranca: false,
-      ie_produtor_rural: '1111',
+      ie_produtor_rural: this.ieProdRural,
     },
   };
 
@@ -100,6 +126,21 @@ export class NewClientComponent {
     } else {
       this[field] = value;
     }
+  }
+
+  handleCEP() {
+    this.authService
+      .openCEP(this.cep)
+      .then((response) => {
+        this.adressPrincipal = response;
+        this.stateUF = response?.uf;
+        this.mun = response?.localidade;
+        this.adress = response?.logradouro;
+        this.neighborhood = response?.bairro;
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
   }
 
   onRegister() {

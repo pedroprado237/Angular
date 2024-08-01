@@ -7,6 +7,7 @@ import axios from 'axios';
 export class AuthService {
   private loginUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/Auth/login';
   private maxDataUrl = 'https://desenvolvimento.maxdata.com.br/api/v1/cadastro';
+  private openCepURL = 'https://opencep.com/v1'
 
   constructor() { }
 
@@ -54,7 +55,6 @@ export class AuthService {
   }
   
   dataClientUnic(userId: number) {
-
     return axios.get(`${this.maxDataUrl}/${userId}`, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
@@ -64,7 +64,6 @@ export class AuthService {
   }
   
   editUser(userId: number, userData: any) {
-
     return axios.put(`${this.maxDataUrl}/${userId}`, userData, this.getAuthHeaders())
       .then(response => response?.data)
       .catch(error => {
@@ -72,4 +71,13 @@ export class AuthService {
         throw error;
       });
   }
+
+  openCEP(cep: number){
+    return axios.get(`${this.openCepURL}/${cep}`)
+    .then(response => response?.data)
+    .catch(error => {
+      console.error('Error', error);
+      throw error;
+    });
+    }
 }
