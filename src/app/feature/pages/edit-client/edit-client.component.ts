@@ -22,6 +22,7 @@ interface NumberValue {
   templateUrl: './edit-client.component.html',
   styleUrls: ['./edit-client.component.css'],
 })
+
 export class EditClientComponent implements OnInit {
   clientData: any;
 
@@ -31,17 +32,18 @@ export class EditClientComponent implements OnInit {
   name: string | null = null;
   cpf: string | null = null;
   ativeStatus: boolean | null = null;
+
   typeClient: number | null = null;
-  date: string | null = null;
   shortName: string | null = null;
   alterName: boolean | null = null;
   rg: string | null = null;
   fone: string | null = null;
   cell: string | null = null;
-  typeSale: string | null = null;
+
   automaticDesc: number | null = null;
   disponibleCed: number | null = null;
-  cep: string | null = null;
+
+  cep: number | number = 0;
   stateUF: string | null = null;
   mun: number | null = null;
   adress: string | null = null;
@@ -72,17 +74,10 @@ export class EditClientComponent implements OnInit {
     { value: 3, viewValue: 'Produtor Rural' },
   ];
 
-  typeSaleEdit: StringValue[] = [
-    { value: '0', viewValue: 'Selecione' },
-    { value: 'SomenteVenda', viewValue: 'Somente Venda' },
-    { value: 'SomenteAtacado', viewValue: 'Somente Atacado' },
-    { value: 'VendaAtacado', viewValue: 'Venda ou Atacado' },
-  ];
 
   selectedTypePersonEdit: string | undefined;
   selectedTypeRegisterEdit: string | undefined;
   selectedTypeClientEdit: number | undefined;
-  selectedTypeSaleEdit: string | undefined;
 
   constructor(private authService: AuthService, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -91,9 +86,10 @@ export class EditClientComponent implements OnInit {
     }
   }
 
+  adressPrincipal: any;
+
   ngOnInit(): void {
     if (this.clientData) {
-      console.log('Data: ', this.clientData);
 
       this.codigo = this.clientData?.clientData?.id;
       this.register = this.clientData?.clientData?.tipo_cadastro;
@@ -101,14 +97,13 @@ export class EditClientComponent implements OnInit {
       this.name = this.clientData?.clientData?.nome;
       this.cpf = this.clientData?.clientData?.cpf_cnpj;
       this.ativeStatus = this.clientData?.clientData?.ativo;
+
       this.typeClient = this.clientData?.clientData?.cadastro_tipo_id;
-      this.date = this.clientData?.clientData?.dt_nascimento;
       this.shortName = this.clientData?.clientData?.fantasia;
       this.alterName = this.clientData?.clientData?.chk_alterar_nome;
       this.rg = this.clientData?.clientData?.rg_ie;
       this.fone = this.clientData?.clientData?.fone;
       this.cell = this.clientData?.clientData?.celular;
-      this.typeSale = this.clientData?.clientData?.tipo_preco_venda;
       this.automaticDesc = this.clientData?.clientData?.desconto_auto_aliq;
       this.disponibleCed = this.clientData?.clientData?.vlr_limite_credito;
 
@@ -137,7 +132,6 @@ export class EditClientComponent implements OnInit {
       | 'selectedTypePersonEdit'
       | 'selectedTypeRegisterEdit'
       | 'selectedTypeClientEdit'
-      | 'selectedTypeSaleEdit'
   ) {
     const selectElement = event.target as HTMLSelectElement;
     const value = selectElement.value;
@@ -148,4 +142,20 @@ export class EditClientComponent implements OnInit {
       this[field] = value as any;
     }
   }
+
+  handleCEP() {
+    this.authService
+      .openCEP(this.cep)
+      .then((response) => {
+        this.adressPrincipal = response;
+        this.stateUF = response?.uf;
+        this.mun = response?.localidade;
+        this.adress = response?.logradouro;
+        this.neighborhood = response?.bairro;
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
+  }
+
 }
