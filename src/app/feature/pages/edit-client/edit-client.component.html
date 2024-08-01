@@ -20,7 +20,7 @@
   <div class="firstRowEditClient tableShadow">
     <div class="col-sm-1">
       <label class="form-label">Código</label>
-      <input id="idCodeClientEdit" type="text" class="form-control" disabled
+      <input id="idCodeClientEdit" type="number" class="form-control" disabled
       [(ngModel)] = "codigo" />
     </div>
 
@@ -30,6 +30,7 @@
         id="idSelectTypeRegistrationEdit"
         class="form-select"
         type="select"
+        [(ngModel)]="register"
         (change)="onSelectionChange($event, 'selectedTypeRegisterEdit')"
       >
         <option
@@ -43,7 +44,7 @@
 
     <div class="col-sm-2">
       <label class="form-label">Pessoa</label>
-      <select id="idSelecTypePersonEdit" class="form-select" type="select"
+      <select id="idSelecTypePersonEdit" class="form-select" type="select" [(ngModel)]="person"
       (change)="onSelectionChange($event, 'selectedTypePersonEdit')"
     >
       <option
@@ -67,11 +68,11 @@
       [(ngModel)] = "cpf" />
     </div>
 
-    <div class="col-sm-1">
+    <div class="col-sm-1"> 
       <label class="form-label">Ativo</label>
-      <select id="idActiveClientEdit" class="form-select" type="select">
-        <option value="{1}">Sim</option>
-        <option value="{2}">Não</option>
+      <select id="idActiveClientEdit" class="form-select" type="select" [(ngModel)]="ativeStatus">
+        <option value="true">Sim</option>
+        <option value="false">Não</option>
       </select>
     </div>
   </div>
@@ -80,7 +81,7 @@
       <div class="tabEditClient">
         <div class="col-sm-2">
           <label class="form-label">Tipo Cliente</label>
-          <select id="typeClientEdit" class="form-select" type="select"
+          <select id="typeClientEdit" class="form-select" type="select" [(ngModel)]="typeClient"
           (change)="onSelectionChange($event, 'selectedTypeClientEdit')"
         >
           <option
@@ -101,44 +102,44 @@
         <div class="col-sm-3">
           <label class="form-label">Nome Curto</label>
           <input id="shortNameEdit" type="text" class="form-control"
-          [(ngModel)] = "shortName"/>
+          [(ngModel)] = "shortName" placeholder="Não informado"/>
         </div>
 
         <div class="col-sm-1">
           <label class="form-label">Alterar Nome</label>
-          <select id="alterNameEdit" class="form-select" type="select">
-            <option value="{2}">Não</option>
-            <option value="{1}">Sim</option>
+          <select id="alterNameEdit" class="form-select" type="select" [(ngModel)]="alterName">
+            <option value="false">Não</option>
+            <option value="true">Sim</option>
           </select>
         </div>
 
         <div class="col-sm-1">
           <label class="form-label">RG</label>
           <input id="rgClientEdit" type="number" class="form-control" 
-          [(ngModel)] = "rg"/>
+          [(ngModel)] = "rg" placeholder="Não informado"/>
         </div>
 
         <div class="col-sm-2">
           <label class="form-label">Fone</label>
           <input id="numberFoneEdit" type="number" class="form-control" 
-          [(ngModel)] = "fone"/>
+          [(ngModel)]="fone" placeholder="Não informado" />
         </div>
       </div>
       <div class="tabEditClient">
         <div class="col-sm-2">
           <label class="form-label">Celular</label>
           <input id="numberCelEdit" type="number" class="form-control" 
-          [(ngModel)] = "cell"/>
+          [(ngModel)] = "cell" placeholder="Não informado"/>
         </div>
 
         <div class="col-sm-2">
           <label class="form-label">Tipo de Venda</label>
-          <select id="typeSaleEdit" class="form-select" type="select"
+          <select id="typeSaleEdit" class="form-select" type="select" [(ngModel)]="typeSale"
           (change)="onSelectionChange($event, 'selectedTypeSaleEdit')"
         >
           <option
             *ngFor="let typeSale of typeSaleEdit"
-            [value]="typeSale.value"
+            [(ngModel)]="typeSale.value"
           >
             {{ typeSale.viewValue }}
           </option>
@@ -148,13 +149,13 @@
         <div class="col-sm-2">
           <label class="form-label">Desconto Automático</label>
           <input id="discountClientEdit" type="number" class="form-control" 
-          [(ngModel)] = "automaticDesc"/>
+          [(ngModel)] = "automaticDesc" placeholder="Não informado"/>
         </div>
 
         <div class="col-sm-2">
           <label class="form-label">Crédito Disponivel</label>
           <input id="disponibleCredEdit" type="number" class="form-control" 
-          [(ngModel)] = "disponibleCed"/>
+          [(ngModel)] = "disponibleCed" placeholder="Não informado"/>
         </div>
 
         <div class="col-sm-2">
@@ -179,7 +180,8 @@
 
         <div class="col-sm-2">
           <label class="form-label">Estado UF</label>
-          <input id="stateUFEdit" class="form-select" type="text" disabled />
+          <input id="stateUFEdit" class="form-control" type="text" disabled
+          [(ngModel)] = "stateUF" />
         </div>
 
         <div class="col-sm-2">
@@ -205,19 +207,19 @@
         <div class="col-sm-2">
           <label class="form-label">Número *</label>
           <input id="numberAddressEdit" type="number" class="form-control" 
-          [(ngModel)] = "number"/>
+          [(ngModel)] = "number" placeholder="Não informado"/>
         </div>
 
         <div class="col-sm-2">
           <label class="form-label">I.E Prod. Rural</label>
           <input id="prodRuralIEEdit" type="text" class="form-control" 
-          [(ngModel)] = "ieProdRural"/>
+          [(ngModel)] = "ieProdRural" placeholder="Não informado"/>
         </div>
 
         <div class="col-sm-5">
           <label class="form-label">Descrição *</label>
           <input id="descriptionEdit" type="text" class="form-control" 
-          [(ngModel)] = "description"/>
+          [(ngModel)] = "description" placeholder="Não informado"/>
         </div>
       </div>
     </div>

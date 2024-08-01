@@ -25,30 +25,30 @@ interface NumberValue {
 export class EditClientComponent implements OnInit {
   clientData: any;
 
-  codigo: number | undefined;
-  register: string | undefined;
-  person: string | undefined;
-  name: string | undefined;
-  cpf: string | undefined;
-  ativeStatus: boolean | undefined;
-  typeClient: number | undefined;
-  date: string | undefined;
-  shortName: string | undefined;
-  alterName: boolean | undefined;
-  rg: string | undefined;
-  fone: string | undefined;
-  cell: string | undefined;
-  typeSale: string | undefined;
-  automaticDesc: number | undefined;
-  disponibleCed: number | undefined;
-  cep: string | undefined;
-  stateUF: number | undefined;
-  mun: number | undefined;
-  adress: string | undefined;
-  neighborhood: string | undefined;
-  number: string | undefined;
-  ieProdRural: string | undefined;
-  description: string | undefined;
+  codigo: number | null = null;
+  register: string | null = null;
+  person: string | null = null;
+  name: string | null = null;
+  cpf: string | null = null;
+  ativeStatus: boolean | null = null;
+  typeClient: number | null = null;
+  date: string | null = null;
+  shortName: string | null = null;
+  alterName: boolean | null = null;
+  rg: string | null = null;
+  fone: string | null = null;
+  cell: string | null = null;
+  typeSale: string | null = null;
+  automaticDesc: number | null = null;
+  disponibleCed: number | null = null;
+  cep: string | null = null;
+  stateUF: string | null = null;
+  mun: number | null = null;
+  adress: string | null = null;
+  neighborhood: string | null = null;
+  number: string | null = null;
+  ieProdRural: string | null = null;
+  description: string | null = null;
 
   typeRegisterEdit: StringValue[] = [
     { value: '0', viewValue: 'Selecione' },
@@ -88,44 +88,56 @@ export class EditClientComponent implements OnInit {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       this.clientData = navigation.extras.state;
+    }
   }
-}
 
   ngOnInit(): void {
     if (this.clientData) {
-      console.log("Data: ", this.clientData)
+      console.log('Data: ', this.clientData);
 
-      this.codigo = this.clientData?.clientData?.id ?? "Não informado";
-      this.register = this.clientData?.clientData?.tipo_cadastro ?? "Não informado";
-      this.person = this.clientData?.clientData?.tipo_pessoa ?? "Não informado";
-      this.name = this.clientData?.clientData?.nome ?? "Não informado";
-      this.cpf = this.clientData?.clientData?.cpf_cnpj ?? "Não informado";
-      this.ativeStatus = this.clientData?.clientData?.ativo ?? "Não informado";
-      this.typeClient = this.clientData?.clientData?.cadastro_tipo_id ?? "Não informado";
-      this.date = this.clientData?.clientData?.dt_nascimento ?? "Não informado";
-      this.shortName = this.clientData?.clientData?.fantasia ?? "Não informado";
-      this.alterName = this.clientData?.clientData?.chk_alterar_nome ?? "Não informado";
-      this.rg = this.clientData?.clientData?.rg_ie ?? "Não informado";
-      this.fone = this.clientData?.clientData?.fone ?? "Não informado";
-      this.cell = this.clientData?.clientData?.celular ?? "Não informado";
-      this.typeSale = this.clientData?.clientData?.tipo_cadastro ?? "Não informado";
-      this.automaticDesc = this.clientData?.clientData?.desconto_auto_aliq ?? "Não informado";
-      this.disponibleCed = this.clientData?.clientData?.vlr_limite_credito ?? "Não informado";
+      this.codigo = this.clientData?.clientData?.id;
+      this.register = this.clientData?.clientData?.tipo_cadastro;
+      this.person = this.clientData?.clientData?.tipo_pessoa;
+      this.name = this.clientData?.clientData?.nome;
+      this.cpf = this.clientData?.clientData?.cpf_cnpj;
+      this.ativeStatus = this.clientData?.clientData?.ativo;
+      this.typeClient = this.clientData?.clientData?.cadastro_tipo_id;
+      this.date = this.clientData?.clientData?.dt_nascimento;
+      this.shortName = this.clientData?.clientData?.fantasia;
+      this.alterName = this.clientData?.clientData?.chk_alterar_nome;
+      this.rg = this.clientData?.clientData?.rg_ie;
+      this.fone = this.clientData?.clientData?.fone;
+      this.cell = this.clientData?.clientData?.celular;
+      this.typeSale = this.clientData?.clientData?.tipo_preco_venda;
+      this.automaticDesc = this.clientData?.clientData?.desconto_auto_aliq;
+      this.disponibleCed = this.clientData?.clientData?.vlr_limite_credito;
 
-      this.cep = this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_cep ?? "Não informado";
-      this.stateUF = this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_uf_codigo ?? "Não informado";
-      this.mun = this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_municipio_codigo_pais ?? "Não informado";
-      this.adress = this.clientData?.clientData?.cadastro_endereco_padrao?.endereco ?? "Não informado";
-      this.neighborhood = this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_bairro ?? "Não informado";
-      this.number = this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_numero ?? "Não informado";
-      this.ieProdRural = this.clientData?.clientData?.cadastro_endereco_padrao?.ie_produtor_rural ?? "Não informado";
-      this.description = this.clientData?.clientData?.cadastro_endereco_padrao?.descricao ?? "Não informado";
+      this.cep =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_cep;
+      this.stateUF =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_uf_codigo;
+      this.mun =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_municipio_codigo_pais;
+      this.adress =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco;
+      this.neighborhood =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_bairro;
+      this.number =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_numero;
+      this.ieProdRural =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.ie_produtor_rural;
+      this.description =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.descricao;
     }
   }
 
   onSelectionChange(
     event: Event,
-    field: 'selectedTypePersonEdit' | 'selectedTypeRegisterEdit' | 'selectedTypeClientEdit' | 'selectedTypeSaleEdit'
+    field:
+      | 'selectedTypePersonEdit'
+      | 'selectedTypeRegisterEdit'
+      | 'selectedTypeClientEdit'
+      | 'selectedTypeSaleEdit'
   ) {
     const selectElement = event.target as HTMLSelectElement;
     const value = selectElement.value;
