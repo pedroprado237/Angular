@@ -17,11 +17,20 @@
       </div>
     </div>
   </nav>
-  
+
   <!-- Alert -->
-  <div *ngIf="showAlert" [class]="'alert alert-dismissible fade show alert-fixed ' + alertStyle" role="alert">
+  <div
+    *ngIf="showAlert"
+    [class]="'alert alert-dismissible fade show alert-fixed ' + alertStyle"
+    role="alert"
+  >
     {{ alertMessage }}
-    <button type="button" class="btn-close" aria-label="Close" (click)="showAlert = false"></button>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="showAlert = false"
+    ></button>
   </div>
 
   <div class="firstRowEditClient tableShadow">
@@ -201,12 +210,13 @@
           <label for="basic-url" class="form-label">CEP *</label>
           <div class="input-group">
             <input
-              type="number"
-              class="form-control"
-              id="basic-url"
-              aria-describedby="basic-addon3 basic-addon4"
-              min="0"
-              [(ngModel)]="cep"
+            type="number"
+            class="form-control"
+            id="basic-url"
+            aria-describedby="basic-addon3 basic-addon4"
+            autocomplete="off"
+            placeholder="CEP"
+            [(ngModel)]="cep"
             />
             <span
               class="input-group-text"
@@ -285,7 +295,7 @@
         </div>
 
         <div class="col-sm-6">
-          <label class="form-label">Descrição *</label>
+          <label class="form-label">Descrição </label>
           <input
             id="descriptionEdit"
             type="text"
@@ -296,8 +306,12 @@
         </div>
       </div>
       <div class="flexEnd actionsButtons">
-        <button class="disableButton" (click)="handleDisableClient()">Desativar</button>
-        <button class="confirmButton" (click)="handleEditClient()">Salvar</button>
+        <button class="disableButton" (click)="handleDisableClient()">
+          Desativar
+        </button>
+        <button class="confirmButton" (click)="handleEditClient()">
+          Salvar
+        </button>
       </div>
     </div>
   </div>

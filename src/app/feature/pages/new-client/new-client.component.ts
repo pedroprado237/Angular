@@ -21,7 +21,7 @@ export class NewClientComponent {
 
   showAlert: boolean = false;
   alertMessage: string = '';
-  alertStyle: string = ''
+  alertStyle: string = '';
 
   register: string = '0';
   person: string = '0';
@@ -38,7 +38,7 @@ export class NewClientComponent {
 
   automaticDescAplic: boolean = false;
 
-  cep: number = 0;
+  cep: string | string = '';
   stateUF: string | null = null;
   mun: string | null = null;
   adress: string | null = null;
@@ -125,6 +125,19 @@ export class NewClientComponent {
   }
 
   handleNewClient() {
+    if (
+      !this.name ||
+      !this.cpf ||
+      !this.cep ||
+      !this.neighborhood ||
+      !this.number
+    ) {
+      this.displayAlert(
+        'alert-warning',
+        'Campos obrigatórios devem ser preechidos!'
+      );
+      return;
+    }
     const fieldsRoute = {
       nome: null,
       fantasia: null,
@@ -187,15 +200,15 @@ export class NewClientComponent {
       obs_nfe: null,
       consumidor_final: false,
       tipo_preco_venda: null,
-      cadastro_empresa_id: 670,
-      cadastro_empresa_guid: 'bc434ee2-a72b-435e-b24d-2e8ee331eae3',
+      cadastro_empresa_id: null,
+      cadastro_empresa_guid: null,
       ativo: null,
       dt_ultima_alteracao: null,
       usuario_ultima_alteracao_id: null,
       usuario_ultima_alteracao_nome: null,
       dt_inclusao: null,
-      usuario_inclusao_id: 13,
-      guid: '9f53340c-3156-4cea-b67b-4f860936a0f8',
+      usuario_inclusao_id: null,
+      guid: null,
     };
     const standardAddress = {
       descricao: null,
@@ -234,10 +247,14 @@ export class NewClientComponent {
         ie_produtor_rural: this.ieProdRural,
       },
     };
+
     this.authService
       .register(registerData)
       .then(() => {
         this.displayAlert('alert-success', 'Cliente adicionado com sucesso!');
+        setTimeout(() => {
+          this.router.navigate(['/clients']);
+        }, 3000);
       })
       .catch((error) => {
         this.displayAlert('alert-danger', 'Falha ao adicionar cliente.');
