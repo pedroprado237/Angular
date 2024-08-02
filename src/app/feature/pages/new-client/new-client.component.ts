@@ -19,22 +19,22 @@ interface numberValue {
 export class NewClientComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  register: string | string = '0';
-  person: string | string = '0';
+  register: string = '0';
+  person: string = '0';
   name: string | null = null;
   cpf: string | null = null;
-  ativeStatus: boolean | boolean = true;
+  ativeStatus: boolean = true;
 
-  typeClient: number | number = 0;
+  typeClient: number = 0;
   shortName: string | null = null;
-  alterName: boolean | boolean = false;
+  alterName: boolean = false;
   rg: string | null = null;
   fone: string | null = null;
   cell: string | null = null;
 
-  automaticDescAplic: boolean | boolean = false;
+  automaticDescAplic: boolean = false;
 
-  cep: number | number = 0;
+  cep: number = 0;
   stateUF: string | null = null;
   mun: string | null = null;
   adress: string | null = null;
