@@ -3,14 +3,22 @@
     <div class="container-fluid">
       <a class="navbar-brand">
         <img
-            src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg"
-            alt="MaxData"
-            style="max-width: 186px; height: auto"
-          />
+          src="https://desenvolvimento.maxdata.com.br/assets/imagens/login/MaxWEB.svg"
+          alt="MaxData"
+          style="max-width: 186px; height: auto"
+        />
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
-      </button> 
+      </button>
     </div>
   </nav>
 
@@ -36,7 +44,6 @@
       <input id="idInputFilterCpfCnpj" type="text" class="form-control" />
     </div>
     <div class="col-sm-2">
-
       <label class="form-label">Tipo de pessoa</label>
       <select
         id="idSelectTypePerson"
@@ -44,10 +51,7 @@
         type="select"
         (change)="onSelectedTypePerson($event)"
       >
-        <option
-          *ngFor="let person of typePerson"
-          [value]="person.value"
-        >
+        <option *ngFor="let person of typePerson" [value]="person.value">
           {{ person.viewValue }}
         </option>
       </select>
@@ -61,10 +65,7 @@
         type="select"
         (change)="onSelectedGroupClient($event)"
       >
-        <option
-          *ngFor="let group of groupClient"
-          [value]="group.value"
-        >
+        <option *ngFor="let group of groupClient" [value]="group.value">
           {{ group.viewValue }}
         </option>
       </select>
@@ -98,56 +99,67 @@
       </button>
     </div>
   </div>
+  <div *ngIf="dataClients; else loading">
+    <table class="table table-striped tableShadow">
+      <thead>
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Fantasia</th>
+          <th scope="col">CPF/CNPJ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let client of dataClients"
+          (click)="handleEditClient(client?.id)"
+        >
+          <td>{{ client?.id }}</td>
+          <td>{{ client?.nome ?? "Não informado" }}</td>
+          <td>{{ client?.fantasia ?? "Não informado" }}</td>
+          <td>{{ client?.cpf_cnpj ?? "Não informado" }}</td>
+        </tr>
+      </tbody>
+    </table>
 
-  <table class="table table-striped tableShadow">
-    <thead>
-      <tr>
-        <th scope="col">Código</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Fantasia</th>
-        <th scope="col">CPF/CNPJ</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let client of dataClients" (click)="handleEditClient(client?.id)">
-        <td>{{ client?.id }}</td>
-        <td>{{ client?.nome ?? "Não informado" }}</td>
-        <td>{{ client?.fantasia ?? "Não informado" }}</td>
-        <td>{{ client?.cpf_cnpj ?? "Não informado" }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="footer footerStyle tableShadow">
-    <div class="descriptionTotal">
-      <p>
-        Mostrando 1 de 20 do Total: {{ dataPagination?.total_registros ?? 0 }}
-      </p>
-    </div>
-    <div aria-label="navigation">
-      <ul class="pagination">
-        <li class="page-item" [class.disabled]="pagination === 1">
-          <a
-            class="page-link"
-            (click)="handlePaginationPrev()"
-            aria-label="Previous"
+    <div class="footer footerStyle tableShadow">
+      <div class="descriptionTotal">
+        <p>
+          Mostrando 1 de 20 do Total: {{ dataPagination?.total_registros ?? 0 }}
+        </p>
+      </div>
+      <div aria-label="navigation">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="pagination === 1">
+            <a
+              class="page-link"
+              (click)="handlePaginationPrev()"
+              aria-label="Previous"
+            >
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="#">{{ pagination }}</a>
+          </li>
+          <li
+            class="page-item"
+            [class.disabled]="pagination === paginationTotal"
           >
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">{{ pagination }}</a>
-        </li>
-        <li class="page-item" [class.disabled]="pagination === paginationTotal">
-          <a
-            class="page-link"
-            (click)="handlePaginationNext()"
-            aria-label="Next"
-          >
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
+            <a
+              class="page-link"
+              (click)="handlePaginationNext()"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+
+  <ng-template #loading>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-template>
 </div>

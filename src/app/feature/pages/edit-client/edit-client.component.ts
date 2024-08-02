@@ -23,6 +23,10 @@ export class EditClientComponent implements OnInit {
   fieldsRoute: any;
   fieldsAddress: any;
 
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertStyle: string = '';
+
   // Inputs front
   codigo: number = 0;
   register: string = '0';
@@ -40,7 +44,7 @@ export class EditClientComponent implements OnInit {
 
   automaticDescAplic: boolean = false;
 
-  cep: number = 0;
+  cep: string | string = '';
   stateUF: string | null = null;
   mun: string | null = null;
   adress: string | null = null;
@@ -86,7 +90,8 @@ export class EditClientComponent implements OnInit {
   ngOnInit(): void {
     if (this.clientData) {
       this.fieldsRoute = this.clientData?.clientData;
-      this.fieldsAddress = this.clientData?.clientData?.cadastro_endereco_padrao
+      this.fieldsAddress =
+        this.clientData?.clientData?.cadastro_endereco_padrao;
 
       this.codigo = this.clientData?.clientData?.id;
       this.register = this.clientData?.clientData?.tipo_cadastro;
@@ -157,10 +162,32 @@ export class EditClientComponent implements OnInit {
       });
   }
 
-  handleEditClient() {
-    const oldFields = this.fieldsRoute;
-    const oldAdress = this.fieldsAddress
+  displayAlert(alertStyle: string, alertMessage: string) {
+    this.alertStyle = alertStyle;
+    this.showAlert = true;
+    this.alertMessage = alertMessage;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
+  }
 
+  handleEditClient() {
+    if (
+      !this.name ||
+      !this.cpf ||
+      !this.cep ||
+      !this.neighborhood ||
+      !this.number
+    ) {
+      this.displayAlert(
+        'alert-warning',
+        'Campos obrigatórios devem ser preechidos!'
+      );
+      return;
+    }
+
+    const oldFields = this.fieldsRoute;
+    const oldAdress = this.fieldsAddress;
     const editClient = {
       ...oldFields,
       id: this.codigo,
@@ -189,14 +216,31 @@ export class EditClientComponent implements OnInit {
     this.authService
       .editUser(this.codigo, editClient)
       .then(() => {
-        this.router.navigate(['/clients']);
+        this.displayAlert('alert-success', 'Cliente editado com sucesso!');
       })
       .catch((error) => {
-        console.error('Error', error);
+        this.displayAlert(
+          'alert-danger',
+          'Falha ao editar cliente. Tente novamente.'
+        );
+        console.error('Erro ao editar cliente:', error);
       });
   }
 
   handleDisableClient() {
+    if (
+      !this.name ||
+      !this.cpf ||
+      !this.cep ||
+      !this.neighborhood ||
+      !this.number
+    ) {
+      this.displayAlert(
+        'alert-warning',
+        'Campos obrigatórios devem ser preechidos!'
+      );
+      return;
+    }
     const oldFields = this.fieldsRoute;
     const disableClient = {
       ...oldFields,
@@ -205,10 +249,17 @@ export class EditClientComponent implements OnInit {
     this.authService
       .editUser(this.codigo, disableClient)
       .then(() => {
-        this.router.navigate(['/clients']);
+        this.displayAlert('alert-warning', 'Cliente Desativado com sucesso.');
+        setTimeout(() => {
+          this.router.navigate(['/clients']);
+        }, 3000);
       })
       .catch((error) => {
-        console.error('Error', error);
+        this.displayAlert(
+          'alert-danger',
+          'Falha ao editar cliente. Tente novamente.'
+        );
+        console.error('Erro ao editar cliente:', error);
       });
   }
 }

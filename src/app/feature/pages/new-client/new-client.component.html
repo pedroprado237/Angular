@@ -17,6 +17,22 @@
       </div>
     </div>
   </nav>
+
+  <!-- Alert -->
+  <div
+    *ngIf="showAlert"
+    [class]="'alert alert-dismissible fade show alert-fixed ' + alertStyle"
+    role="alert"
+  >
+    {{ alertMessage }}
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="showAlert = false"
+    ></button>
+  </div>
+
   <div class="firstRowEditClient tableShadow">
     <div class="row firstNewClient col-sm-12">
       <div class="col-sm-2">
@@ -186,7 +202,8 @@
               class="form-control"
               id="basic-url"
               aria-describedby="basic-addon3 basic-addon4"
-              min="0"
+              autocomplete="off"
+              placeholder="CEP"
               [(ngModel)]="cep"
             />
             <span
@@ -270,7 +287,7 @@
         </div>
 
         <div class="col-sm-6">
-          <label class="form-label">Descrição *</label>
+          <label class="form-label">Descrição </label>
           <input
             id="descriptionNew"
             type="text"
@@ -283,7 +300,9 @@
       </div>
       <div class="row firstNewClient col-sm-12">
         <div class="flexEnd col-sm-12">
-          <button class="confirmButton" (click)="handleNewClient()">Cadastrar</button>
+          <button class="confirmButton" (click)="handleNewClient()">
+            Cadastrar
+          </button>
         </div>
       </div>
     </div>

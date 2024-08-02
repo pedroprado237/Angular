@@ -73,7 +73,7 @@ export class AuthService {
       });
   }
 
-  openCEP(cep: number){
+  openCEP(cep: string){
     return axios.get(`${this.openCepURL}/${cep}`)
     .then(response => response?.data)
     .catch(error => {
