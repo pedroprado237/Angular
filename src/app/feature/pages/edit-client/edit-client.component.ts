@@ -20,24 +20,27 @@ interface NumberValue {
 })
 export class EditClientComponent implements OnInit {
   clientData: any;
+  fieldsRoute: any;
+  fieldsAddress: any;
 
-  codigo: number | number = 0;
-  register: string | string = "0";
-  person: string | string = "0";
+  // Inputs front
+  codigo: number = 0;
+  register: string = '0';
+  person: string = '0';
   name: string | null = null;
   cpf: string | null = null;
-  ativeStatus: boolean | boolean = true;
+  ativeStatus: boolean = true;
 
-  typeClient: number | number = 0;
+  typeClient: number = 0;
   shortName: string | null = null;
-  alterName: boolean | boolean = false;
+  alterName: boolean = false;
   rg: string | null = null;
   fone: string | null = null;
   cell: string | null = null;
 
-  automaticDescAplic: boolean | boolean = false;
+  automaticDescAplic: boolean = false;
 
-  cep: number | number = 0;
+  cep: number = 0;
   stateUF: string | null = null;
   mun: string | null = null;
   adress: string | null = null;
@@ -82,6 +85,9 @@ export class EditClientComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.clientData) {
+      this.fieldsRoute = this.clientData?.clientData;
+      this.fieldsAddress = this.clientData?.clientData?.cadastro_endereco_padrao
+
       this.codigo = this.clientData?.clientData?.id;
       this.register = this.clientData?.clientData?.tipo_cadastro;
       this.person = this.clientData?.clientData?.tipo_pessoa;
@@ -152,7 +158,11 @@ export class EditClientComponent implements OnInit {
   }
 
   handleEditClient() {
+    const oldFields = this.fieldsRoute;
+    const oldAdress = this.fieldsAddress
+
     const editClient = {
+      ...oldFields,
       id: this.codigo,
       nome: this.name,
       ativo: Boolean(this.ativeStatus),
@@ -166,60 +176,39 @@ export class EditClientComponent implements OnInit {
       chk_alterar_nome: Boolean(this.alterName),
       desconto_auto_aplicar: this.automaticDescAplic,
       cadastro_endereco_padrao: {
+        ...oldAdress,
         descricao: this.description,
-        ativo: true,
         endereco: this.adress,
         endereco_numero: this.number,
         endereco_bairro: this.neighborhood,
         endereco_cep: this.cep,
         endereco_municipio_codigo_ibge: this?.ibge,
-        principal: false,
-        cobranca: false,
         ie_produtor_rural: this.ieProdRural,
       },
     };
-    this.authService.editUser(this.codigo, editClient)
-    .then(() =>{
-      this.router.navigate(['/clients']);
-    })
-    .catch((error) => {
-      console.error('Error', error);
-    });
+    this.authService
+      .editUser(this.codigo, editClient)
+      .then(() => {
+        this.router.navigate(['/clients']);
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
   }
 
   handleDisableClient() {
+    const oldFields = this.fieldsRoute;
     const disableClient = {
-      id: this.codigo,
-      nome: this.name,
+      ...oldFields,
       ativo: false,
-      fantasia: this.shortName,
-      cpf_cnpj: this.cpf,
-      rg_ie: this.rg,
-      tipo_pessoa: this.person,
-      tipo_cadastro: this.register,
-      cadastro_tipo_id: this.typeClient,
-      fone: this.fone,
-      chk_alterar_nome: Boolean(this.alterName),
-      desconto_auto_aplicar: this.automaticDescAplic,
-      cadastro_endereco_padrao: {
-        descricao: this.description,
-        ativo: true,
-        endereco: this.adress,
-        endereco_numero: this.number,
-        endereco_bairro: this.neighborhood,
-        endereco_cep: this.cep,
-        endereco_municipio_codigo_ibge: this?.ibge,
-        principal: false,
-        cobranca: false,
-        ie_produtor_rural: this.ieProdRural,
-      },
     };
-    this.authService.editUser(this.codigo, disableClient)
-    .then(() =>{
-      this.router.navigate(['/clients']);
-    })
-    .catch((error) => {
-      console.error('Error', error);
-    });
+    this.authService
+      .editUser(this.codigo, disableClient)
+      .then(() => {
+        this.router.navigate(['/clients']);
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
   }
 }
