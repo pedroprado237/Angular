@@ -9,17 +9,17 @@ import { AuthService } from '../../../auth.service';
 })
 export class LoginComponent {
   email: string = '';
-  senha: string = '';
+  password: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   onLogin() {
-    if (!this.email || !this.senha) {
+    if (!this.email || !this.password) {
       this.errorMessage = 'Please enter both email and password.';
       return;
     }
-    this.authService.login(this.email, this.senha)
+    this.authService.login(this.email, this.password)
 
       .then( response => {
         response ?? localStorage.setItem('access_token', response?.data?.access_token)
