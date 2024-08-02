@@ -249,16 +249,16 @@ export class EditClientComponent implements OnInit {
     this.authService
       .editUser(this.codigo, disableClient)
       .then(() => {
-        this.displayAlert('alert-success', 'Cliente editado com sucesso!');
+        this.displayAlert('alert-warning', 'Cliente Desativado com sucesso.');
+        setTimeout(() => {
+          this.router.navigate(['/clients']);
+        }, 3000);
       })
       .catch((error) => {
         this.displayAlert(
           'alert-danger',
           'Falha ao editar cliente. Tente novamente.'
         );
-        setTimeout(() => {
-          this.router.navigate(['/clients']);
-        }, 3000);
         console.error('Erro ao editar cliente:', error);
       });
   }
