@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth.service';
+import { response } from 'express';
 
 interface StringValue {
   value: string;
-  viewValue: string;
-}
-
-interface BooleanValue {
-  value: boolean;
   viewValue: string;
 }
 
@@ -24,30 +20,33 @@ interface NumberValue {
 })
 export class EditClientComponent implements OnInit {
   clientData: any;
+  fieldsRoute: any;
+  fieldsAddress: any;
 
-  codigo: number | null = null;
-  register: string | null = null;
-  person: string | null = null;
+  // Inputs front
+  codigo: number = 0;
+  register: string = '0';
+  person: string = '0';
   name: string | null = null;
   cpf: string | null = null;
-  ativeStatus: boolean | null = null;
+  ativeStatus: boolean = true;
 
-  typeClient: number | null = null;
+  typeClient: number = 0;
   shortName: string | null = null;
-  alterName: boolean | null = null;
+  alterName: boolean = false;
   rg: string | null = null;
   fone: string | null = null;
   cell: string | null = null;
 
-  automaticDesc: number | null = null;
-  disponibleCed: number | null = null;
+  automaticDescAplic: boolean = false;
 
-  cep: number | number = 0;
+  cep: number = 0;
   stateUF: string | null = null;
-  mun: number | null = null;
+  mun: string | null = null;
   adress: string | null = null;
   neighborhood: string | null = null;
   number: string | null = null;
+  ibge: number | null = null;
   ieProdRural: string | null = null;
   description: string | null = null;
 
@@ -84,10 +83,11 @@ export class EditClientComponent implements OnInit {
     }
   }
 
-  adressPrincipal: any;
-
   ngOnInit(): void {
     if (this.clientData) {
+      this.fieldsRoute = this.clientData?.clientData;
+      this.fieldsAddress = this.clientData?.clientData?.cadastro_endereco_padrao
+
       this.codigo = this.clientData?.clientData?.id;
       this.register = this.clientData?.clientData?.tipo_cadastro;
       this.person = this.clientData?.clientData?.tipo_pessoa;
@@ -101,15 +101,17 @@ export class EditClientComponent implements OnInit {
       this.rg = this.clientData?.clientData?.rg_ie;
       this.fone = this.clientData?.clientData?.fone;
       this.cell = this.clientData?.clientData?.celular;
-      this.automaticDesc = this.clientData?.clientData?.desconto_auto_aliq;
-      this.disponibleCed = this.clientData?.clientData?.vlr_limite_credito;
+      this.automaticDescAplic =
+        this.clientData?.clientData?.desconto_auto_aplicar;
 
       this.cep =
         this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_cep;
       this.stateUF =
-        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_uf_codigo;
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_uf_sigla;
       this.mun =
-        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_municipio_codigo_pais;
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_municipio_descricao;
+      this.ibge =
+        this.clientData?.clientData?.cadastro_endereco_padrao?.endereco_municipio_codigo_ibge;
       this.adress =
         this.clientData?.clientData?.cadastro_endereco_padrao?.endereco;
       this.neighborhood =
@@ -144,11 +146,66 @@ export class EditClientComponent implements OnInit {
     this.authService
       .openCEP(this.cep)
       .then((response) => {
-        this.adressPrincipal = response;
         this.stateUF = response?.uf;
         this.mun = response?.localidade;
         this.adress = response?.logradouro;
+        this.ibge = response?.ibge;
         this.neighborhood = response?.bairro;
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
+  }
+
+  handleEditClient() {
+    const oldFields = this.fieldsRoute;
+    const oldAdress = this.fieldsAddress
+
+    const editClient = {
+      ...oldFields,
+      id: this.codigo,
+      nome: this.name,
+      ativo: Boolean(this.ativeStatus),
+      fantasia: this.shortName,
+      cpf_cnpj: this.cpf,
+      rg_ie: this.rg,
+      tipo_pessoa: this.person,
+      tipo_cadastro: this.register,
+      cadastro_tipo_id: this.typeClient,
+      fone: this.fone,
+      chk_alterar_nome: Boolean(this.alterName),
+      desconto_auto_aplicar: this.automaticDescAplic,
+      cadastro_endereco_padrao: {
+        ...oldAdress,
+        descricao: this.description,
+        endereco: this.adress,
+        endereco_numero: this.number,
+        endereco_bairro: this.neighborhood,
+        endereco_cep: this.cep,
+        endereco_municipio_codigo_ibge: this?.ibge,
+        ie_produtor_rural: this.ieProdRural,
+      },
+    };
+    this.authService
+      .editUser(this.codigo, editClient)
+      .then(() => {
+        this.router.navigate(['/clients']);
+      })
+      .catch((error) => {
+        console.error('Error', error);
+      });
+  }
+
+  handleDisableClient() {
+    const oldFields = this.fieldsRoute;
+    const disableClient = {
+      ...oldFields,
+      ativo: false,
+    };
+    this.authService
+      .editUser(this.codigo, disableClient)
+      .then(() => {
+        this.router.navigate(['/clients']);
       })
       .catch((error) => {
         console.error('Error', error);
