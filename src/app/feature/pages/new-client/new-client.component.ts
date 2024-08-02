@@ -19,6 +19,10 @@ interface numberValue {
 export class NewClientComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertStyle: string = ''
+
   register: string = '0';
   person: string = '0';
   name: string | null = null;
@@ -109,6 +113,15 @@ export class NewClientComponent {
       .catch((error) => {
         console.error('Error', error);
       });
+  }
+
+  displayAlert(alertStyle: string, alertMessage: string) {
+    this.alertStyle = alertStyle;
+    this.showAlert = true;
+    this.alertMessage = alertMessage;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
   }
 
   handleNewClient() {
@@ -224,10 +237,11 @@ export class NewClientComponent {
     this.authService
       .register(registerData)
       .then(() => {
-        this.router.navigate(['/clients']);
+        this.displayAlert('alert-success', 'Cliente adicionado com sucesso!');
       })
       .catch((error) => {
-        console.error('Error', error);
+        this.displayAlert('alert-danger', 'Falha ao adicionar cliente.');
+        console.error('Erro ao editar cliente:', error);
       });
   }
 }

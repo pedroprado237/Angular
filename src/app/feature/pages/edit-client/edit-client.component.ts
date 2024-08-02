@@ -23,6 +23,10 @@ export class EditClientComponent implements OnInit {
   fieldsRoute: any;
   fieldsAddress: any;
 
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertStyle: string = ''
+
   // Inputs front
   codigo: number = 0;
   register: string = '0';
@@ -157,10 +161,18 @@ export class EditClientComponent implements OnInit {
       });
   }
 
+  displayAlert(alertStyle: string, alertMessage: string) {
+    this.alertStyle = alertStyle;
+    this.showAlert = true;
+    this.alertMessage = alertMessage;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
+  }
+
   handleEditClient() {
     const oldFields = this.fieldsRoute;
     const oldAdress = this.fieldsAddress
-
     const editClient = {
       ...oldFields,
       id: this.codigo,
@@ -187,14 +199,15 @@ export class EditClientComponent implements OnInit {
       },
     };
     this.authService
-      .editUser(this.codigo, editClient)
-      .then(() => {
-        this.router.navigate(['/clients']);
-      })
-      .catch((error) => {
-        console.error('Error', error);
-      });
-  }
+    .editUser(this.codigo, editClient)
+    .then(() => {
+      this.displayAlert('alert-success', 'Cliente editado com sucesso!');
+    })
+    .catch((error) => {
+      this.displayAlert('alert-danger', 'Falha ao editar cliente. Tente novamente.');
+      console.error('Erro ao editar cliente:', error);
+    });
+    }
 
   handleDisableClient() {
     const oldFields = this.fieldsRoute;
@@ -205,10 +218,11 @@ export class EditClientComponent implements OnInit {
     this.authService
       .editUser(this.codigo, disableClient)
       .then(() => {
-        this.router.navigate(['/clients']);
+        this.displayAlert('alert-success', 'Cliente editado com sucesso!');
       })
       .catch((error) => {
-        console.error('Error', error);
+        this.displayAlert('alert-danger', 'Falha ao editar cliente. Tente novamente.');
+        console.error('Erro ao editar cliente:', error);
       });
   }
 }
