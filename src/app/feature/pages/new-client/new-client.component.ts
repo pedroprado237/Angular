@@ -6,11 +6,6 @@ interface stringValue {
   viewValue: string;
 }
 
-interface booleanValue {
-  value: boolean;
-  viewValue: string;
-}
-
 interface numberValue {
   value: number;
   viewValue: string;
@@ -24,10 +19,8 @@ interface numberValue {
 export class NewClientComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
-  adressPrincipal: any;
-
-  register: string | string = '0';
-  person: string | string = '0';
+  register: string | string = "0";
+  person: string | string = "0";
   name: string | null = null;
   cpf: string | null = null;
   ativeStatus: boolean | boolean = true;
@@ -39,14 +32,15 @@ export class NewClientComponent {
   fone: string | null = null;
   cell: string | null = null;
 
-  automaticDesc: number | null = null;
+  automaticDescAplic: boolean | boolean = false;
 
   cep: number | number = 0;
   stateUF: string | null = null;
-  mun: number | null = null;
+  mun: string | null = null;
   adress: string | null = null;
   neighborhood: string | null = null;
   number: string | null = null;
+  ibge: number | null = null;
   ieProdRural: string | null = null;
   description: string | null = null;
 
@@ -79,31 +73,6 @@ export class NewClientComponent {
     { value: 'VendaAtacado', viewValue: 'Venda ou Atacado' },
   ];
 
-  registerData = {
-    nome: this.name,
-    ativo: this.ativeStatus,
-    fantasia: this.shortName,
-    cpf_cnpj: this.cpf,
-    rg_ie: this.rg,
-    tipo_pessoa: this.person,
-    tipo_cadastro: this.register,
-    cadastro_tipo_id: this.typeClient,
-    fone: this.fone,
-    chk_alterar_nome: this.alterName,
-    desconto_auto_aplicar: this.automaticDesc !== null ? false : true,
-    cadastro_endereco_padrao: {
-      descricao: this.description,
-      ativo: true,
-      // endereco: this.adressPrincipal?.logradouro,
-      endereco_numero: this.number,
-      // endereco_bairro: this.adressPrincipal?.bairro,
-      endereco_cep: this.cep,
-      // endereco_municipio_codigo_ibge: this.adressPrincipal?.ibge,
-      principal: false,
-      cobranca: false,
-      ie_produtor_rural: this.ieProdRural,
-    },
-  };
 
   selectedTypePersonNew: string | undefined;
   selectedTypeRegisterNew: string | undefined;
@@ -132,10 +101,10 @@ export class NewClientComponent {
     this.authService
       .openCEP(this.cep)
       .then((response) => {
-        this.adressPrincipal = response;
         this.stateUF = response?.uf;
         this.mun = response?.localidade;
         this.adress = response?.logradouro;
+        this.ibge = response?.ibge;
         this.neighborhood = response?.bairro;
       })
       .catch((error) => {
@@ -143,17 +112,38 @@ export class NewClientComponent {
       });
   }
 
-  onRegister() {
-    this.authService
-      .register(this.registerData)
-      .then((response) => {
-        console.log('Response: ', response);
-        this.router.navigate(['/clients']);
-        return;
-      })
-      .catch((error) => {
-        console.error('error', error);
-        return;
-      });
+  handleNewClient() {
+    const registerData = {
+      nome: this.name,
+      ativo: Boolean(this.ativeStatus),
+      fantasia: this.shortName,
+      cpf_cnpj: this.cpf,
+      rg_ie: this.rg,
+      tipo_pessoa: this.person,
+      tipo_cadastro: this.register,
+      cadastro_tipo_id: this.typeClient,
+      fone: this.fone,
+      chk_alterar_nome: Boolean(this.alterName),
+      desconto_auto_aplicar: this.automaticDescAplic,
+      cadastro_endereco_padrao: {
+        descricao: this.description,
+        ativo: true,
+        endereco: this.adress,
+        endereco_numero: this.number,
+        endereco_bairro: this.neighborhood,
+        endereco_cep: this.cep,
+        endereco_municipio_codigo_ibge: this?.ibge,
+        principal: false,
+        cobranca: false,
+        ie_produtor_rural: this.ieProdRural,
+      },
+    };
+    this.authService.register(registerData)
+    .then(() =>{
+      this.router.navigate(['/clients']);
+    })
+    .catch((error) => {
+      console.error('Error', error);
+    });
   }
 }
