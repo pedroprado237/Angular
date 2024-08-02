@@ -173,22 +173,6 @@
             placeholder="ex: (11)1234-5678"
           />
         </div>
-
-        <div class="col-sm-2">
-          <label for="basic-url" class="form-label">Desconto Automático</label>
-          <div class="input-group">
-            <input
-              type="number"
-              class="form-control"
-              id="basic-url"
-              aria-describedby="basic-addon3 basic-addon4"
-              min="0"
-              [(ngModel)]="automaticDesc"
-              placeholder="Desconto"
-            />
-            <span class="input-group-text" id="basic-addon3"> % </span>
-          </div>
-        </div>
       </div>
       <div class="tabEditClient">
         <label class="form-label fontBold">Endereço</label>
@@ -267,8 +251,7 @@
           <label class="form-label">Número *</label>
           <input
             id="numberAddressNew"
-            type="number"
-            min="0"
+            type="text"
             class="form-control"
             [(ngModel)]="number"
             placeholder="Número"
@@ -300,7 +283,7 @@
       </div>
       <div class="row firstNewClient col-sm-12">
         <div class="flexEnd col-sm-12">
-          <button class="confirmButton">Cadastrar</button>
+          <button class="confirmButton" (click)="handleNewClient()">Cadastrar</button>
         </div>
       </div>
     </div>
