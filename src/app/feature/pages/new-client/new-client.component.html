@@ -17,6 +17,13 @@
       </div>
     </div>
   </nav>
+  
+    <!-- Alert -->
+    <div *ngIf="showAlert" [class]="'alert alert-dismissible fade show alert-fixed ' + alertStyle" role="alert">
+      {{ alertMessage }}
+      <button type="button" class="btn-close" aria-label="Close" (click)="showAlert = false"></button>
+    </div>
+
   <div class="firstRowEditClient tableShadow">
     <div class="row firstNewClient col-sm-12">
       <div class="col-sm-2">
