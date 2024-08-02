@@ -10,6 +10,7 @@ import { EditClientComponent } from './feature/pages/edit-client/edit-client.com
 import { NewClientComponent } from './feature/pages/new-client/new-client.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatIconModule} from '@angular/material/icon';
 
 
@@ -26,7 +27,8 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule,
     AppRoutingModule,
     MatDividerModule,
-    MatIconModule
+    MatProgressBarModule,
+    MatIconModule,
 
   ],
   providers: [AuthService, provideAnimationsAsync()],
