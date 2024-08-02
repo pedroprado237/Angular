@@ -73,7 +73,7 @@
     .pageContent {
       margin: 0rem 1.25rem 0rem 1.25rem;
       padding: 1% 1% 0% 1%;
-      gap: 1.563rem;
+      gap: 1rem;
       display: flex;
       flex-direction: column;
     }
@@ -152,6 +152,10 @@
       border-radius: 0.5rem;
       box-shadow: .5px .5px 5px 0px rgba(0, 0, 0, .2);
       padding:  0.625rem 0.625rem 0.875rem 0.625rem;
+    }
+
+    .table {
+      margin-bottom: 0rem;
     }
     
     .form-group {
