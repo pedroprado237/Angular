@@ -185,12 +185,23 @@
       font-size: 95%;
   }
 
+  .alert-fixed {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 18.75rem;
+    z-index: 1050;
+    margin-right: 1.188rem;
+}  
+
     .footerStyle{
       display: flex;
       justify-content: space-between;
       padding: 10px 10px 0px 10px;
       margin-bottom: 1.563rem;
   }
+
+  
 
   #basic-addon3 {
     cursor: pointer;
