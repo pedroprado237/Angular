@@ -31,6 +31,7 @@ export class AuthService {
     }
     return {
       headers: {
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
     };
