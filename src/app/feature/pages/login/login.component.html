@@ -6,6 +6,21 @@
       style="max-width: 500px; height: auto"
     />
 
+    <!-- Alert -->
+    <div
+      *ngIf="showAlert"
+      [class]="'alert alert-dismissible fade show alert-fixed ' + alertStyle"
+      role="alert"
+    >
+      {{ alertMessage }}
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="showAlert = false"
+      ></button>
+    </div>
+
     <form (ngSubmit)="onLogin()" class="col-sm-3 maxWeb">
       <div>
         <label class="form-label" for="email">E-mail:</label>
@@ -30,7 +45,9 @@
         />
       </div>
       <div>
-        <button class="col-sm-12 buttonLogin" type="submit">Entrar</button>
+        <button class="col-sm-12 buttonLogin" type="submit">
+          {{ loadingLogin ? "Carregando..." : "Entrar" }}
+        </button>
       </div>
     </form>
   </div>

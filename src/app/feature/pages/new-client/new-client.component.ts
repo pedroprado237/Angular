@@ -100,6 +100,15 @@ export class NewClientComponent {
     }
   }
 
+  displayAlert(alertStyle: string, alertMessage: string) {
+    this.alertStyle = alertStyle;
+    this.showAlert = true;
+    this.alertMessage = alertMessage;
+    setTimeout(() => {
+      this.showAlert = false;
+    }, 3000);
+  }
+
   handleCEP() {
     this.authService
       .openCEP(this.cep)
@@ -111,20 +120,12 @@ export class NewClientComponent {
         this.neighborhood = response?.bairro;
       })
       .catch((error) => {
-        console.error('Error', error);
+        this.displayAlert('alert-danger', 'Falha ao buscar CEP.');
+        console.error('Erro ao buscar CEP.', error);
       });
   }
 
-  displayAlert(alertStyle: string, alertMessage: string) {
-    this.alertStyle = alertStyle;
-    this.showAlert = true;
-    this.alertMessage = alertMessage;
-    setTimeout(() => {
-      this.showAlert = false;
-    }, 3000);
-  }
-
-  handleNewClient() {
+  checkRequiredFields() {
     if (
       !this.name ||
       !this.cpf ||
@@ -134,8 +135,15 @@ export class NewClientComponent {
     ) {
       this.displayAlert(
         'alert-warning',
-        'Campos obrigatórios devem ser preechidos!'
+        'Campos obrigatórios não preenchidos!'
       );
+      return false;
+    }
+    return true;
+  }
+
+  handleNewClient() {
+    if (!this.checkRequiredFields()) {
       return;
     }
     const fieldsRoute = {
