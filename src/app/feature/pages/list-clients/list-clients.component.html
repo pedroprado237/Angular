@@ -22,6 +22,21 @@
     </div>
   </nav>
 
+  <!-- Alert -->
+  <div
+  *ngIf="showAlert"
+  [class]="'alert alert-dismissible fade show alert-fixed ' + alertStyle"
+  role="alert"
+>
+  {{ alertMessage }}
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="showAlert = false"
+  ></button>
+</div>
+
   <div>
     <button
       type="button"
